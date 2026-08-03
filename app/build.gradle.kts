@@ -37,10 +37,18 @@ android {
     buildFeatures {
         compose = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
+    }
 }
 
 dependencies {
     implementation(projects.core.designsystem)
+    implementation(projects.core.model)
+    implementation(projects.core.datastoreProto)
 
     // di
     implementation(libs.hilt.android)
