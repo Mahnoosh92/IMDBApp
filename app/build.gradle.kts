@@ -49,6 +49,11 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
     implementation(projects.core.datastore)
+    implementation(projects.feature.home)
+    implementation(projects.feature.profile)
+    implementation(projects.feature.watchlist)
+    implementation(projects.feature.serach)
+    implementation(projects.feature.detail)
 
     // di
     implementation(libs.hilt.android)
