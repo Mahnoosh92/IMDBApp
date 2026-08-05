@@ -1,24 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.devtools.ksp)
 }
 
 android {
-    namespace = "com.example.imdbapp"
+    namespace = "com.example.datastore"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.imdbapp"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,31 +30,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        compose = true
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/LICENSE.md"
-            excludes += "/META-INF/LICENSE-notice.md"
-        }
-    }
 }
 
 dependencies {
-    implementation(projects.core.designsystem)
+    implementation(projects.core.common)
     implementation(projects.core.model)
-    implementation(projects.core.datastoreProto)
 
     // di
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-    // performance
-    implementation(libs.androidx.metrics)
-
-    // splash
-    implementation(libs.androidx.core.splashscreen)
-
-
+    // datastore
+    api(libs.androidx.dataStore)
+    api(projects.core.datastoreProto)
 }

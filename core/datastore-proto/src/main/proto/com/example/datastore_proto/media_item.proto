@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_package = "com.example.core.datastore";
+option java_multiple_files = true;
+
+message WatchList {
+  repeated MediaItem items = 1;
+}
+
+message MediaItem {
+  int32 id = 1;
+  string media_type = 2;
+  bool adult = 3;
+  optional string backdrop_path = 4;
+  optional string poster_path = 5;
+  string overview = 6;
+  string original_language = 7;
+  repeated int32 genre_ids = 8;
+  double popularity = 9;
+  double vote_average = 10;
+  int32 vote_count = 11;
+  optional string title = 12;
+  optional string original_title = 13;
+  optional string release_date = 14;
+  optional bool video = 15;
+  optional string name = 16;
+  optional string original_name = 17;
+  optional string first_air_date = 18;
+  repeated string origin_country = 19;
+}
