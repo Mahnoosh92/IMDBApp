@@ -48,7 +48,7 @@ android {
 dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
-    implementation(projects.core.datastoreProto)
+    implementation(projects.core.datastore)
 
     // di
     implementation(libs.hilt.android)
