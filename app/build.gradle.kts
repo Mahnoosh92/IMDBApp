@@ -49,6 +49,7 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
     implementation(projects.core.datastore)
+    implementation(projects.core.navigation)
     implementation(projects.feature.home)
     implementation(projects.feature.profile)
     implementation(projects.feature.watchlist)
@@ -65,5 +66,10 @@ dependencies {
     // splash
     implementation(libs.androidx.core.splashscreen)
 
+    // adaptive window
+    implementation(libs.androidx.compose.material3.adaptive)
+
+    // navigation suite
+    implementation(libs.androidx.compose.material3.navigationSuite)
 
 }

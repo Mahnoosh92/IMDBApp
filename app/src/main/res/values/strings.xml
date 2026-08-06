@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">IMDBApp</string>
-    <string name="feature_home">Home</string>
-    <string name="feature_watch_list">WatchList</string>
-    <string name="feature_profile">Profile</string>
+    <string name="search">search</string>
+    <string name="setting">setting</string>
 </resources>

@@ -1,10 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.example.serach"
+    namespace = "com.example.navigation"
     compileSdk {
         version = release(36)
     }
@@ -25,9 +24,6 @@ android {
             )
         }
     }
-    buildFeatures {
-        compose = true
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,6 +31,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.navigation)
-    implementation(projects.core.designsystem)
+    // navigation
+    api(libs.androidx.navigation.compose)
+    api(libs.androidx.navigation.testing)
+    api(libs.androidx.hilt.navigation.compose)
 }
