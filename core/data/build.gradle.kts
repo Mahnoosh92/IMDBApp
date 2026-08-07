@@ -1,11 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.devtools.ksp)
 }
 
 android {
-    namespace = "com.example.datastore"
+    namespace = "com.example.data"
     compileSdk {
         version = release(36)
     }
@@ -30,24 +28,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    testOptions {
-        unitTests {
-            all {
-                it.useJUnitPlatform()
-            }
-        }
-    }
 }
 
 dependencies {
-    implementation(projects.core.common)
-    implementation(projects.core.model)
-    implementation(projects.core.testing.unit)
-
-    // di
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
-    // datastore
-    api(libs.androidx.dataStore)
-    api(projects.core.datastoreProto)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

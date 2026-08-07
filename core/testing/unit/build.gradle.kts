@@ -45,6 +45,7 @@ dependencies {
     api(libs.turbine)
     api(libs.mockk)
     api(libs.truth)
+    api(libs.hilt.test)
 
     api(libs.junit.jupiter.api)
     api(libs.junit.jupiter.params)

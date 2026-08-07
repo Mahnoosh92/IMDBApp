@@ -26,28 +26,28 @@ fun com.example.core.datastore.MediaItem.asExternalModel(): MediaItem {
     )
 }
 
-fun MediaItem.asInternalModel(): com.example.core.datastore.MediaItem {
-    return com.example.core.datastore.MediaItem.newBuilder()
-        .setId(id)
-        .setMediaType(mediaType)
-        .setAdult(adult)
-        .apply {
-            backdropPath?.let { setBackdropPath(it) }
-            posterPath?.let { setPosterPath(it) }
-            title?.let { setTitle(it) }
-            originalTitle?.let { setOriginalTitle(it) }
-            releaseDate?.let { setReleaseDate(it) }
-            video?.let { setVideo(it) }
-            name?.let { setName(it) }
-            originalName?.let { setOriginalName(it) }
-            firstAirDate?.let { setFirstAirDate(it) }
-        }
-        .setOverview(overview)
-        .setOriginalLanguage(originalLanguage)
-        .addAllGenreIds(genreIds)
-        .setPopularity(popularity)
-        .setVoteAverage(voteAverage)
-        .setVoteCount(voteCount)
-        .addAllOriginCountry(originCountry ?: emptyList())
-        .build()
-}
+fun MediaItem.asInternalModel(): com.example.core.datastore.MediaItem =
+    com.example.core.datastore.MediaItem.newBuilder().apply {
+        id = this@asInternalModel.id
+        mediaType = this@asInternalModel.mediaType
+        adult = this@asInternalModel.adult
+
+        // Use default empty string fallback so proto sets the value cleanly
+        backdropPath = this@asInternalModel.backdropPath ?: ""
+        posterPath = this@asInternalModel.posterPath ?: ""
+        title = this@asInternalModel.title ?: ""
+        originalTitle = this@asInternalModel.originalTitle ?: ""
+        releaseDate = this@asInternalModel.releaseDate ?: ""
+        video = this@asInternalModel.video ?: false
+        name = this@asInternalModel.name ?: ""
+        originalName = this@asInternalModel.originalName ?: ""
+        firstAirDate = this@asInternalModel.firstAirDate ?: ""
+
+        overview = this@asInternalModel.overview
+        originalLanguage = this@asInternalModel.originalLanguage
+        addAllGenreIds(genreIds)
+        popularity = this@asInternalModel.popularity
+        voteAverage = this@asInternalModel.voteAverage
+        voteCount = this@asInternalModel.voteCount
+        addAllOriginCountry(originCountry ?: emptyList())
+    }.build()
