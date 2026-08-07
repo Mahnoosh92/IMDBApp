@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/feature/profile" />
             <option value="$PROJECT_DIR$/feature/serach" />
             <option value="$PROJECT_DIR$/feature/watchlist" />
+            <option value="$PROJECT_DIR$/lint" />
           </set>
         </option>
       </GradleProjectSettings>

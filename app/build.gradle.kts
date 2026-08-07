@@ -55,6 +55,7 @@ dependencies {
     implementation(projects.feature.watchlist)
     implementation(projects.feature.serach)
     implementation(projects.feature.detail)
+    lintChecks(project(":lint"))
 
     // di
     implementation(libs.hilt.android)
