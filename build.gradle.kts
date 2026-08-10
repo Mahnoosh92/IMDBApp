@@ -7,4 +7,40 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.android.junit5) apply false
     alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.spotless) apply false
+}
+
+subprojects {
+    apply(plugin = "com.diffplug.spotless")
+
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        kotlin {
+            target("**/*.kt")
+            targetExclude("**/build/**/*.kt")
+
+            ktlint("1.0.1")
+                .setEditorConfigPath(rootProject.file(".editorconfig"))
+                .editorConfigOverride(
+                    mapOf(
+                        "max_line_length" to "300",
+                        "ktlint_standard_max-line-length" to "disabled",
+                        "ktlint_standard_discouraged-comment-location" to "disabled",
+                    )
+                )
+
+            trimTrailingWhitespace()
+            leadingTabsToSpaces()
+            endWithNewline()
+        }
+
+        kotlinGradle {
+            target("*.gradle.kts")
+            ktlint("1.0.1").setEditorConfigPath(rootProject.file(".editorconfig"))
+        }
+
+        format("xml") {
+            target("**/*.xml")
+            targetExclude("**/build/**/*.xml")
+        }
+    }
 }

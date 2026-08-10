@@ -1,6 +1,5 @@
 package com.example.imdbapp
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -17,9 +16,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarResult.ActionPerformed
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
@@ -55,27 +52,22 @@ import com.example.watchlist.navigation.navigateToWatchList
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
-fun rememberAppState(
-    coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    navController: NavHostController = rememberNavController(),
-) = remember(
+fun rememberAppState(coroutineScope: CoroutineScope = rememberCoroutineScope(), navController: NavHostController = rememberNavController()) = remember(
     navController,
-    coroutineScope
+    coroutineScope,
 ) {
     AppState(
         navController = navController,
-        coroutineScope = coroutineScope
+        coroutineScope = coroutineScope,
     )
 }
 
 @Stable
-class AppState(
-    val navController: NavHostController,
-    val coroutineScope: CoroutineScope,
-) {
+class AppState(val navController: NavHostController, val coroutineScope: CoroutineScope) {
     val currentDestination: NavDestination?
-        @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination
+        @Composable get() =
+            navController
+                .currentBackStackEntryAsState().value?.destination
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() {
@@ -84,21 +76,22 @@ class AppState(
             }
         }
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
-    fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
 
-        val topLevelNavOptions = navOptions {
-            // Pop up to the start destination of the graph to
-            // avoid building up a large stack of destinations
-            // on the back stack as users select items
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
+    fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
+        val topLevelNavOptions =
+            navOptions {
+                // Pop up to the start destination of the graph to
+                // avoid building up a large stack of destinations
+                // on the back stack as users select items
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                // Avoid multiple copies of the same destination when
+                // reselecting the same item
+                launchSingleTop = true
+                // Restore state when reselecting a previously selected item
+                restoreState = true
             }
-            // Avoid multiple copies of the same destination when
-            // reselecting the same item
-            launchSingleTop = true
-            // Restore state when reselecting a previously selected item
-            restoreState = true
-        }
 
         when (topLevelDestination) {
             TopLevelDestination.HOME -> navController.navigateToHome(navOptions = topLevelNavOptions)
@@ -106,27 +99,24 @@ class AppState(
             TopLevelDestination.PROFILE -> navController.navigateToProfile(navOptions = topLevelNavOptions)
         }
     }
-
 }
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun IMDBApp(
-    appState: AppState,
-    modifier: Modifier = Modifier,
-    windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo()
-) {
+fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo()) {
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
     if (showSettingsDialog) {
         // TODO: Show settings dialog
     }
-    val layoutType = NavigationSuiteScaffoldDefaults
-        .calculateFromAdaptiveInfo(windowAdaptiveInfo)
+    val layoutType =
+        NavigationSuiteScaffoldDefaults
+            .calculateFromAdaptiveInfo(windowAdaptiveInfo)
     val currentDestination = appState.currentTopLevelDestination
 
     NavigationSuiteScaffold(
         layoutType = layoutType,
-        modifier = modifier.semantics {
+        modifier =
+        modifier.semantics {
             testTagsAsResourceId = true
         },
         navigationSuiteItems = {
@@ -137,23 +127,25 @@ fun IMDBApp(
                     onClick = { appState.navigateToTopLevelDestination(destination) },
                     icon = {
                         Icon(
-                            imageVector = if (isSelected) {
+                            imageVector =
+                            if (isSelected) {
                                 destination.selectedIcon
                             } else {
                                 destination.unselectedIcon
                             },
-                            contentDescription = stringResource(id = destination.iconTextId)
+                            contentDescription = stringResource(id = destination.iconTextId),
                         )
                     },
                     label = {
                         Text(text = stringResource(id = destination.iconTextId))
-                    }
+                    },
                 )
             }
-        }
+        },
     ) {
         Scaffold(
-            modifier = modifier.semantics {
+            modifier =
+            modifier.semantics {
                 testTagsAsResourceId = true
             },
             containerColor = Color.Transparent,
@@ -181,7 +173,8 @@ fun IMDBApp(
                         navigationIconContentDescription = stringResource(R.string.search),
                         actionIcon = Icons.Default.Settings,
                         actionIconContentDescription = stringResource(R.string.setting),
-                        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        colors =
+                        TopAppBarDefaults.centerAlignedTopAppBarColors(
                             containerColor = Color.Transparent,
                         ),
                         onNavigationClick = {
@@ -189,7 +182,7 @@ fun IMDBApp(
                         },
                         onActionClick = {
                             showSettingsDialog = true
-                        }
+                        },
                     )
                 }
                 AppNavHost(

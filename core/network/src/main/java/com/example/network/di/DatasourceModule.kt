@@ -11,10 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DatasourceModule {
-
     @Binds
     @Singleton
-    abstract fun bindMovieRemoteDatasource(
-        impl: DefaultMovieRemoteDatasource
-    ): MovieRemoteDatasource
+    abstract fun bindMovieRemoteDatasource(impl: DefaultMovieRemoteDatasource): MovieRemoteDatasource
 }

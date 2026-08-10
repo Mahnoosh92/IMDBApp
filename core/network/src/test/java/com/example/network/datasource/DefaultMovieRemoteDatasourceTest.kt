@@ -20,7 +20,6 @@ import retrofit2.Response
 import java.util.stream.Stream
 
 class DefaultMovieRemoteDatasourceTest {
-
     private val apiService: ApiService = mockk()
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var dataSource: MovieRemoteDatasource
@@ -30,35 +29,32 @@ class DefaultMovieRemoteDatasourceTest {
         dataSource =
             DefaultMovieRemoteDatasource(
                 dispatcher = testDispatcher,
-                apiService = apiService
+                apiService = apiService,
             )
     }
 
     @Test
-    fun `GIVEN 200 OK response WHEN getTrendingMovies is called THEN returns Result success with items`() =
-        runTest(testDispatcher) {
-            val mockItems = listOf(mockk<MediaItemDto>(), mockk<MediaItemDto>())
-            val responseDto = TrendingMediaResponseDto(
+    fun `GIVEN 200 OK response WHEN getTrendingMovies is called THEN returns Result success with items`() = runTest(testDispatcher) {
+        val mockItems = listOf(mockk<MediaItemDto>(), mockk<MediaItemDto>())
+        val responseDto =
+            TrendingMediaResponseDto(
                 results = mockItems,
                 page = 1,
                 totalPages = 1,
-                totalResults = 1
+                totalResults = 1,
             )
-            coEvery { apiService.getTrendingMovies() } returns Response.success(responseDto)
+        coEvery { apiService.getTrendingMovies() } returns Response.success(responseDto)
 
-            val result = dataSource.getTrendingMovies()
+        val result = dataSource.getTrendingMovies()
 
-            assertThat(result.isSuccess).isTrue()
-            assertThat(result.getOrNull()).isEqualTo(mockItems)
-            coVerify(exactly = 1) { apiService.getTrendingMovies() }
-        }
+        assertThat(result.isSuccess).isTrue()
+        assertThat(result.getOrNull()).isEqualTo(mockItems)
+        coVerify(exactly = 1) { apiService.getTrendingMovies() }
+    }
 
     @ParameterizedTest(name = "HTTP {0} maps to expected exception type {1}")
     @MethodSource("provideHttpErrorScenarios")
-    fun `GIVEN HTTP status code error WHEN getTrendingMovies is called THEN returns corresponding NetworkException`(
-        statusCode: Int,
-        expectedExceptionClass: Class<out NetworkException>
-    ) = runTest(testDispatcher) {
+    fun `GIVEN HTTP status code error WHEN getTrendingMovies is called THEN returns corresponding NetworkException`(statusCode: Int, expectedExceptionClass: Class<out NetworkException>) = runTest(testDispatcher) {
         val errorResponseBody = "{\"message\":\"An error occurred\"}".toResponseBody()
         val errorResponse = Response.error<TrendingMediaResponseDto>(statusCode, errorResponseBody)
         coEvery { apiService.getTrendingMovies() } returns errorResponse
@@ -79,7 +75,7 @@ class DefaultMovieRemoteDatasourceTest {
             Arguments.of(500, NetworkException.ServerError::class.java),
             Arguments.of(503, NetworkException.ServerError::class.java),
             Arguments.of(404, NetworkException.ApiError::class.java),
-            Arguments.of(429, NetworkException.ApiError::class.java)
+            Arguments.of(429, NetworkException.ApiError::class.java),
         )
     }
 }

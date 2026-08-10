@@ -49,6 +49,6 @@ fun TopAppbar(
             }
         },
         colors = colors,
-        modifier = modifier.testTag(Tags.AppBar.topAppbar),
+        modifier = modifier.testTag(Tags.AppBar.TOP_APP_BAR),
     )
 }

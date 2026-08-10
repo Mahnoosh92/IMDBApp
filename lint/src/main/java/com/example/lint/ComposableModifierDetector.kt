@@ -16,53 +16,52 @@ class ComposableModifierDetector : Detector(), Detector.UastScanner {
         UMethod::class.java,
     )
 
-    override fun createUastHandler(context: JavaContext): UElementHandler =
-        object : UElementHandler() {
-            override fun visitMethod(node: UMethod) {
-                // Check if function is a Composable
-                val isComposable = node.annotations.any { annotation ->
-                    annotation.qualifiedName == "androidx.compose.runtime.Composable"
-                }
-                if (!isComposable) return
+    override fun createUastHandler(context: JavaContext): UElementHandler = object : UElementHandler() {
+        override fun visitMethod(node: UMethod) {
+            // Check if function is a Composable
+            val isComposable = node.annotations.any { annotation ->
+                annotation.qualifiedName == "androidx.compose.runtime.Composable"
+            }
+            if (!isComposable) return
 
-                // Skip private or preview composables
-                if (node.isConstructor || node.annotations.any { it.qualifiedName?.contains("Preview") == true }) {
-                    return
-                }
+            // Skip private or preview composables
+            if (node.isConstructor || node.annotations.any { it.qualifiedName?.contains("Preview") == true }) {
+                return
+            }
 
-                val parameters = node.uastParameters
-                val modifierParamIndex = parameters.indexOfFirst { param ->
-                    param.type.canonicalText == "androidx.compose.ui.Modifier"
-                }
+            val parameters = node.uastParameters
+            val modifierParamIndex = parameters.indexOfFirst { param ->
+                param.type.canonicalText == "androidx.compose.ui.Modifier"
+            }
 
-                // Rule 1: Modifier parameter must exist
-                if (modifierParamIndex == -1) {
-                    context.report(
-                        issue = MISSING_MODIFIER_ISSUE,
-                        location = context.getNameLocation(node),
-                        message = "Composable function `${node.name}` should accept a `modifier: Modifier = Modifier` parameter.",
-                    )
-                    return
-                }
+            // Rule 1: Modifier parameter must exist
+            if (modifierParamIndex == -1) {
+                context.report(
+                    issue = MISSING_MODIFIER_ISSUE,
+                    location = context.getNameLocation(node),
+                    message = "Composable function `${node.name}` should accept a `modifier: Modifier = Modifier` parameter.",
+                )
+                return
+            }
 
-                // Find index of the first parameter that has a default value (first optional parameter)
-                val firstOptionalParamIndex = parameters.indexOfFirst { param ->
-                    param.uastInitializer != null
-                }
+            // Find index of the first parameter that has a default value (first optional parameter)
+            val firstOptionalParamIndex = parameters.indexOfFirst { param ->
+                param.uastInitializer != null
+            }
 
-                // Rule 2: Modifier should be the first OPTIONAL parameter
-                // (If no default values exist elsewhere, or if modifier appears after another optional param)
-                if (firstOptionalParamIndex != -1 && modifierParamIndex > firstOptionalParamIndex) {
-                    val modifierParam = parameters[modifierParamIndex] as UElement
+            // Rule 2: Modifier should be the first OPTIONAL parameter
+            // (If no default values exist elsewhere, or if modifier appears after another optional param)
+            if (firstOptionalParamIndex != -1 && modifierParamIndex > firstOptionalParamIndex) {
+                val modifierParam = parameters[modifierParamIndex] as UElement
 
-                    context.report(
-                        issue = MODIFIER_POSITION_ISSUE,
-                        location = context.getLocation(modifierParam), // Disambiguated UElement call
-                        message = "The `modifier` parameter in `${node.name}` should be the first optional parameter.",
-                    )
-                }
+                context.report(
+                    issue = MODIFIER_POSITION_ISSUE,
+                    location = context.getLocation(modifierParam), // Disambiguated UElement call
+                    message = "The `modifier` parameter in `${node.name}` should be the first optional parameter.",
+                )
             }
         }
+    }
     companion object {
         @JvmField
         val MISSING_MODIFIER_ISSUE: Issue = Issue.create(

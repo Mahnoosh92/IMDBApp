@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -72,5 +72,4 @@ dependencies {
 
     // navigation suite
     implementation(libs.androidx.compose.material3.navigationSuite)
-
 }

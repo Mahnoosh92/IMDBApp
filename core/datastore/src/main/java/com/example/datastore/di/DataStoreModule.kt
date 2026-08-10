@@ -21,20 +21,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
-
     @Provides
     @Singleton
-    fun providesUserPreferencesDataStore(
-        @ApplicationContext context: Context,
-        @Dispatcher(Dispatchers.IO) ioDispatcher: CoroutineDispatcher,
-        @ApplicationScope scope: CoroutineScope,
-        userPreferencesSerializer: UserPreferencesSerializer,
-    ): DataStore<UserPreferences> =
-        DataStoreFactory.create(
-            serializer = userPreferencesSerializer,
-            scope = CoroutineScope(scope.coroutineContext + ioDispatcher),
-            migrations = listOf(),
-        ) {
-            context.dataStoreFile("user_preferences.pb")
-        }
+    fun providesUserPreferencesDataStore(@ApplicationContext context: Context, @Dispatcher(Dispatchers.IO) ioDispatcher: CoroutineDispatcher, @ApplicationScope scope: CoroutineScope, userPreferencesSerializer: UserPreferencesSerializer): DataStore<UserPreferences> = DataStoreFactory.create(
+        serializer = userPreferencesSerializer,
+        scope = CoroutineScope(scope.coroutineContext + ioDispatcher),
+        migrations = listOf(),
+    ) {
+        context.dataStoreFile("user_preferences.pb")
+    }
 }

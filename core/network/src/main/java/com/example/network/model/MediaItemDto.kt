@@ -42,5 +42,5 @@ data class MediaItemDto(
     @SerialName("first_air_date")
     val firstAirDate: String? = null,
     @SerialName("origin_country")
-    val originCountry: List<String>? = null
+    val originCountry: List<String>? = null,
 )

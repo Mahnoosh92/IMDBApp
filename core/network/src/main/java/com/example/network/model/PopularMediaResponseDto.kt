@@ -12,5 +12,5 @@ data class PopularMediaResponseDto(
     @SerialName("total_pages")
     val totalPages: Int,
     @SerialName("total_results")
-    val totalResults: Int
+    val totalResults: Int,
 )

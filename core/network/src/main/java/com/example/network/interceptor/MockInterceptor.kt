@@ -7,11 +7,7 @@ import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
-class MockInterceptor(
-    private val context: Context,
-    private val isMockEnabled: Boolean
-) : Interceptor {
-
+class MockInterceptor(private val context: Context, private val isMockEnabled: Boolean) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isMockEnabled) {
             return chain.proceed(chain.request())
@@ -20,12 +16,13 @@ class MockInterceptor(
         val uri = chain.request().url.toUri()
         val path = uri.path
 
-        val jsonFileName = when {
-            path.endsWith("/trending/all/day") -> "trending_movies.json"
-            path.endsWith("/movie/now_playing") -> "now_playing_movies.json"
-            path.endsWith("/movie/popular") -> "popular_movies.json"
-            else -> null
-        }
+        val jsonFileName =
+            when {
+                path.endsWith("/trending/all/day") -> "trending_movies.json"
+                path.endsWith("/movie/now_playing") -> "now_playing_movies.json"
+                path.endsWith("/movie/popular") -> "popular_movies.json"
+                else -> null
+            }
 
         if (jsonFileName != null) {
             try {

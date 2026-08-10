@@ -19,5 +19,5 @@ data class MediaItem(
     val name: String? = null,
     val originalName: String? = null,
     val firstAirDate: String? = null,
-    val originCountry: List<String> = emptyList()
+    val originCountry: List<String> = emptyList(),
 )

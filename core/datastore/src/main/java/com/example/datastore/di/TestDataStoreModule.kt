@@ -20,33 +20,20 @@ import javax.inject.Singleton
     replaces = [DataStoreModule::class],
 )
 internal object TestDataStoreModule {
-
     @Provides
     @Singleton
-    fun providesUserPreferencesDataStore(
-        @ApplicationScope scope: CoroutineScope,
-        userPreferencesSerializer: UserPreferencesSerializer,
-        tmpFolder: TemporaryFolder,
-    ): DataStore<UserPreferences> =
-        tmpFolder.testUserPreferencesDataStore(
-            coroutineScope = scope,
-            userPreferencesSerializer = userPreferencesSerializer,
-        )
+    fun providesUserPreferencesDataStore(@ApplicationScope scope: CoroutineScope, userPreferencesSerializer: UserPreferencesSerializer, tmpFolder: TemporaryFolder): DataStore<UserPreferences> = tmpFolder.testUserPreferencesDataStore(
+        coroutineScope = scope,
+        userPreferencesSerializer = userPreferencesSerializer,
+    )
 
-    fun TemporaryFolder.testUserPreferencesDataStore(
-        coroutineScope: CoroutineScope,
-        userPreferencesSerializer: UserPreferencesSerializer = UserPreferencesSerializer(),
-    ) = testUserPreferencesDataStore(
+    fun TemporaryFolder.testUserPreferencesDataStore(coroutineScope: CoroutineScope, userPreferencesSerializer: UserPreferencesSerializer = UserPreferencesSerializer()) = testUserPreferencesDataStore(
         file = newFile("user_preferences_test.pb"),
         coroutineScope = coroutineScope,
         userPreferencesSerializer = userPreferencesSerializer,
     )
 
-    fun testUserPreferencesDataStore(
-        file: File,
-        coroutineScope: CoroutineScope,
-        userPreferencesSerializer: UserPreferencesSerializer = UserPreferencesSerializer(),
-    ) = DataStoreFactory.create(
+    fun testUserPreferencesDataStore(file: File, coroutineScope: CoroutineScope, userPreferencesSerializer: UserPreferencesSerializer = UserPreferencesSerializer()) = DataStoreFactory.create(
         serializer = userPreferencesSerializer,
         scope = coroutineScope,
     ) {

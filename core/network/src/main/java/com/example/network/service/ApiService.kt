@@ -12,12 +12,8 @@ interface ApiService {
     suspend fun getTrendingMovies(@Query("language") language: String = "en-US"): Response<TrendingMediaResponseDto>
 
     @GET("3/movie/now_playing")
-    suspend fun getNowPlayingMovies(
-        @Query("language") language: String = "en-US", @Query("page") page: Int = 1
-    ): Response<NowPlayingMediaResponseDto>
+    suspend fun getNowPlayingMovies(@Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<NowPlayingMediaResponseDto>
 
     @GET("3/movie/popular")
-    suspend fun getPopularMovies(
-        @Query("language") language: String = "en-US", @Query("page") page: Int = 1
-    ): Response<PopularMediaResponseDto>
+    suspend fun getPopularMovies(@Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<PopularMediaResponseDto>
 }

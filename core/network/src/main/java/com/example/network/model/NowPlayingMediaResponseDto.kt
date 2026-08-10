@@ -8,7 +8,7 @@ data class DatesDto(
     @SerialName("maximum")
     val maximum: String,
     @SerialName("minimum")
-    val minimum: String
+    val minimum: String,
 )
 
 @Serializable
@@ -22,5 +22,5 @@ data class NowPlayingMediaResponseDto(
     @SerialName("total_pages")
     val totalPages: Int,
     @SerialName("total_results")
-    val totalResults: Int
+    val totalResults: Int,
 )

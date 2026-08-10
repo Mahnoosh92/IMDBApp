@@ -9,22 +9,21 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DefaultMovieRemoteDatasource @Inject constructor(
+class DefaultMovieRemoteDatasource
+@Inject
+constructor(
     @Dispatcher(Dispatchers.IO) private val dispatcher: CoroutineDispatcher,
-    private val apiService: ApiService
-) :
-    MovieRemoteDatasource {
+    private val apiService: ApiService,
+) : MovieRemoteDatasource {
     override suspend fun getTrendingMovies(): Result<List<MediaItemDto>> = withContext(dispatcher) {
         safeApiCall({ apiService.getTrendingMovies() }) { it.results }
     }
 
-    override suspend fun getNowPlayingMovies(page: Int): Result<List<MediaItemDto>> =
-        withContext(dispatcher) {
-            safeApiCall({ apiService.getNowPlayingMovies() }) { it.results }
-        }
+    override suspend fun getNowPlayingMovies(page: Int): Result<List<MediaItemDto>> = withContext(dispatcher) {
+        safeApiCall({ apiService.getNowPlayingMovies() }) { it.results }
+    }
 
-    override suspend fun getPopularMovies(page: Int): Result<List<MediaItemDto>> =
-        withContext(dispatcher) {
-            safeApiCall({ apiService.getPopularMovies() }) { it.results }
-        }
+    override suspend fun getPopularMovies(page: Int): Result<List<MediaItemDto>> = withContext(dispatcher) {
+        safeApiCall({ apiService.getPopularMovies() }) { it.results }
+    }
 }

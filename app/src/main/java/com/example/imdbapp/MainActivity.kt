@@ -31,7 +31,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     @Inject
     lateinit var lazyStats: dagger.Lazy<JankStats>
 
@@ -62,11 +61,13 @@ class MainActivity : ComponentActivity() {
             val darkTheme = shouldUseDarkTheme(uiState)
             DisposableEffect(darkTheme) {
                 enableEdgeToEdge(
-                    statusBarStyle = SystemBarStyle.auto(
+                    statusBarStyle =
+                    SystemBarStyle.auto(
                         android.graphics.Color.TRANSPARENT,
                         android.graphics.Color.TRANSPARENT,
                     ) { darkTheme },
-                    navigationBarStyle = SystemBarStyle.auto(
+                    navigationBarStyle =
+                    SystemBarStyle.auto(
                         android.graphics.Color.TRANSPARENT,
                         android.graphics.Color.TRANSPARENT,
                     ) { darkTheme },
@@ -76,7 +77,7 @@ class MainActivity : ComponentActivity() {
             val appState = rememberAppState()
             val snackbarHostState = remember { SnackbarHostState() }
             CompositionLocalProvider(
-                LocalSnackbarHostState provides snackbarHostState
+                LocalSnackbarHostState provides snackbarHostState,
             ) {
                 IMDBAppTheme(darkTheme = darkTheme) {
                     IMDBApp(appState = appState)
@@ -87,17 +88,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun shouldUseDarkTheme(
-    uiState: MainActivityUiState,
-): Boolean = when (uiState) {
+private fun shouldUseDarkTheme(uiState: MainActivityUiState): Boolean = when (uiState) {
     MainActivityUiState.Loading -> isSystemInDarkTheme()
-    is MainActivityUiState.Success -> when (uiState.userData.darkThemeConfig) {
-        DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
-        DarkThemeConfig.LIGHT -> false
-        DarkThemeConfig.DARK -> true
-    }
+
+    is MainActivityUiState.Success ->
+        when (uiState.userData.darkThemeConfig) {
+            DarkThemeConfig.FOLLOW_SYSTEM -> isSystemInDarkTheme()
+            DarkThemeConfig.LIGHT -> false
+            DarkThemeConfig.DARK -> true
+        }
 }
 
-val LocalSnackbarHostState = staticCompositionLocalOf<SnackbarHostState> {
-    error("No SnackbarHostState provided! Wrap your content in CompositionLocalProvider.")
-}
+val LocalSnackbarHostState =
+    staticCompositionLocalOf<SnackbarHostState> {
+        error("No SnackbarHostState provided! Wrap your content in CompositionLocalProvider.")
+    }

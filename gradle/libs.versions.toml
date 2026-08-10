@@ -34,6 +34,7 @@ androidxHiltNavigationCompose = "1.2.0"
 androidxNavigation = "2.8.0"
 androidxComposeMaterial3Adaptive = "1.0.0-rc01"
 androidTools = "31.4.1"
+spotless = "8.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -95,3 +96,4 @@ android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

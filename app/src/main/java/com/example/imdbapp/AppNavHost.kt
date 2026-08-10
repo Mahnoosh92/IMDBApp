@@ -18,6 +18,5 @@ fun AppNavHost(appState: AppState, modifier: Modifier = Modifier) {
         homeScreen()
         watchListScreen()
         profileScreen()
-
     }
 }

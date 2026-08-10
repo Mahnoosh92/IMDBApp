@@ -1,0 +1,37 @@
+# Root .editorconfig
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Settings for Kotlin files
+[*.{kt,kts}]
+# Use standard max_line_length key expected by Ktlint CLI engine
+max_line_length = 300
+ktlint_standard_max-line-length = disabled
+ktlint_standard_discouraged-comment-location = false
+
+# Disable wildcard imports
+ktlint_standard_no-wildcard-imports = disabled
+ij_kotlin_allow_wildcard_imports = true
+
+# Disable function naming check (and allow Composable PascalCase)
+ktlint_standard_function-naming = disabled
+ktlint_standard_function_naming_ignore_when_annotated_with = Composable
+
+# Disable filename matching check
+ktlint_standard_filename = disabled
+
+# Path-specific overrides for test files
+[**/src/test/**/*.kt]
+max_line_length = off
+ktlint_standard_max-line-length = disabled
+
+[**/src/androidTest/**/*.kt]
+max_line_length = off
+ktlint_standard_max-line-length = disabled

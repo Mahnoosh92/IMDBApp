@@ -12,7 +12,9 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(private val preferencesDataSource: IMDBPreferencesDataSource) :
+class MainActivityViewModel
+@Inject
+constructor(private val preferencesDataSource: IMDBPreferencesDataSource) :
     ViewModel() {
     val uiState: StateFlow<MainActivityUiState> =
         preferencesDataSource.userData.map<UserData, MainActivityUiState> {
@@ -26,5 +28,6 @@ class MainActivityViewModel @Inject constructor(private val preferencesDataSourc
 
 sealed interface MainActivityUiState {
     data object Loading : MainActivityUiState
+
     data class Success(val userData: UserData) : MainActivityUiState
 }
