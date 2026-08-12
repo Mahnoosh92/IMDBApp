@@ -24,7 +24,7 @@ subprojects {
                     mapOf(
                         "max_line_length" to "300",
                         "ktlint_standard_max-line-length" to "disabled",
-                        "ktlint_standard_discouraged-comment-location" to "disabled",
+                        "ktlint_standard_discouraged-comment-location" to "disabled"
                     )
                 )
 
@@ -42,5 +42,19 @@ subprojects {
             target("**/*.xml")
             targetExclude("**/build/**/*.xml")
         }
+    }
+}
+
+tasks.register<Copy>("installGitHooks") {
+    from(file("scripts/pre-commit"))
+    into(file(".git/hooks"))
+    filePermissions {
+        unix("rwxr-xr-x")
+    }
+}
+
+afterEvaluate {
+    tasks.named("prepareKotlinBuildScriptModel") {
+        dependsOn("installGitHooks")
     }
 }
