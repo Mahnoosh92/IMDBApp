@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MediaItemDto(
+data class MovieItemDto(
     @SerialName("id")
     val id: Int,
     @SerialName("media_type")

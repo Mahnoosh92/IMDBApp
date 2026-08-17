@@ -2,7 +2,7 @@ package com.example.datastore
 
 import com.example.datastore.di.TestDataStoreModule.testUserPreferencesDataStore
 import com.example.model.DarkThemeConfig
-import com.example.model.MediaItem
+import com.example.model.MovieItem
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -73,7 +73,7 @@ class IMDBPreferencesDataSourceTest {
         assertTrue(userData.watchListMovies.isEmpty())
     }
 
-    private fun createSampleMediaItem(id: Int = 101, title: String = "Inception"): MediaItem = MediaItem(
+    private fun createSampleMediaItem(id: Int = 101, title: String = "Inception"): MovieItem = MovieItem(
         id = id,
         mediaType = "movie",
         adult = false,

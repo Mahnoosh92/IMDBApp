@@ -1,8 +1,8 @@
 package com.example.network.datasource
 
-import com.example.network.model.MediaItemDto
+import com.example.network.model.MovieItemDto
 import com.example.network.model.NetworkException
-import com.example.network.model.TrendingMediaResponseDto
+import com.example.network.model.TrendingMovieResponseDto
 import com.example.network.service.ApiService
 import com.google.common.truth.Truth.assertThat
 import io.mockk.coEvery
@@ -35,9 +35,9 @@ class DefaultMovieRemoteDatasourceTest {
 
     @Test
     fun `GIVEN 200 OK response WHEN getTrendingMovies is called THEN returns Result success with items`() = runTest(testDispatcher) {
-        val mockItems = listOf(mockk<MediaItemDto>(), mockk<MediaItemDto>())
+        val mockItems = listOf(mockk<MovieItemDto>(), mockk<MovieItemDto>())
         val responseDto =
-            TrendingMediaResponseDto(
+            TrendingMovieResponseDto(
                 results = mockItems,
                 page = 1,
                 totalPages = 1,
@@ -56,7 +56,7 @@ class DefaultMovieRemoteDatasourceTest {
     @MethodSource("provideHttpErrorScenarios")
     fun `GIVEN HTTP status code error WHEN getTrendingMovies is called THEN returns corresponding NetworkException`(statusCode: Int, expectedExceptionClass: Class<out NetworkException>) = runTest(testDispatcher) {
         val errorResponseBody = "{\"message\":\"An error occurred\"}".toResponseBody()
-        val errorResponse = Response.error<TrendingMediaResponseDto>(statusCode, errorResponseBody)
+        val errorResponse = Response.error<TrendingMovieResponseDto>(statusCode, errorResponseBody)
         coEvery { apiService.getTrendingMovies() } returns errorResponse
 
         val result = dataSource.getTrendingMovies()

@@ -1,6 +1,6 @@
 package com.example.model
 
-data class MediaItem(
+data class MovieItem(
     val id: Int,
     val mediaType: String,
     val adult: Boolean,

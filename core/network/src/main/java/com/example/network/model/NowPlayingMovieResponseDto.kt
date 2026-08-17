@@ -18,7 +18,7 @@ data class NowPlayingMediaResponseDto(
     @SerialName("page")
     val page: Int,
     @SerialName("results")
-    val results: List<MediaItemDto>,
+    val results: List<MovieItemDto>,
     @SerialName("total_pages")
     val totalPages: Int,
     @SerialName("total_results")

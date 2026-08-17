@@ -1,8 +1,8 @@
 package com.example.datastore.extensions
 
-import com.example.model.MediaItem
+import com.example.model.MovieItem
 
-fun com.example.core.datastore.MediaItem.asExternalModel(): MediaItem = MediaItem(
+fun com.example.core.datastore.MediaItem.asExternalModel(): MovieItem = MovieItem(
     id = id,
     mediaType = mediaType,
     adult = adult,
@@ -24,7 +24,7 @@ fun com.example.core.datastore.MediaItem.asExternalModel(): MediaItem = MediaIte
     originCountry = originCountryList,
 )
 
-fun MediaItem.asInternalModel(): com.example.core.datastore.MediaItem = com.example.core.datastore.MediaItem.newBuilder().apply {
+fun MovieItem.asInternalModel(): com.example.core.datastore.MediaItem = com.example.core.datastore.MediaItem.newBuilder().apply {
     id = this@asInternalModel.id
     mediaType = this@asInternalModel.mediaType
     adult = this@asInternalModel.adult

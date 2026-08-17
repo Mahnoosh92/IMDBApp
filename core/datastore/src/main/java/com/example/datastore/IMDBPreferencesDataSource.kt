@@ -9,7 +9,7 @@ import com.example.core.datastore.copy
 import com.example.datastore.extensions.asExternalModel
 import com.example.datastore.extensions.asInternalModel
 import com.example.model.DarkThemeConfig
-import com.example.model.MediaItem
+import com.example.model.MovieItem
 import com.example.model.UserData
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -36,12 +36,12 @@ class IMDBPreferencesDataSource @Inject constructor(private val userPreferences:
             )
         }
 
-    suspend fun setWatchList(watchList: List<MediaItem>) {
+    suspend fun setWatchList(watchList: List<MovieItem>) {
         try {
             userPreferences.updateData { currentPreferences ->
                 currentPreferences.copy {
                     this.watchList = WatchList.newBuilder()
-                        .addAllItems(watchList.map(MediaItem::asInternalModel))
+                        .addAllItems(watchList.map(MovieItem::asInternalModel))
                         .build()
                 }
             }
@@ -50,7 +50,7 @@ class IMDBPreferencesDataSource @Inject constructor(private val userPreferences:
         }
     }
 
-    suspend fun addWatchItem(watchItem: MediaItem) {
+    suspend fun addWatchItem(watchItem: MovieItem) {
         try {
             userPreferences.updateData { currentPreferences ->
                 val currentItems = currentPreferences.watchList.itemsList.toMutableList()
