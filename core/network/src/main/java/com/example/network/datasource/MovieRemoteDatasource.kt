@@ -1,5 +1,6 @@
 package com.example.network.datasource
 
+import com.example.network.model.GenreDTO
 import com.example.network.model.MovieItemDto
 
 interface MovieRemoteDatasource {
@@ -8,4 +9,5 @@ interface MovieRemoteDatasource {
     suspend fun getNowPlayingMovies(page: Int): Result<List<MovieItemDto>>
 
     suspend fun getPopularMovies(page: Int): Result<List<MovieItemDto>>
+    suspend fun getGenres(): Result<List<GenreDTO>>
 }

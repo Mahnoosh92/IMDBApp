@@ -1,5 +1,6 @@
 package com.example.network.service
 
+import com.example.network.model.GenreResponseDTO
 import com.example.network.model.NowPlayingMediaResponseDto
 import com.example.network.model.PopularMovieResponseDto
 import com.example.network.model.TrendingMovieResponseDto
@@ -16,4 +17,7 @@ interface ApiService {
 
     @GET("3/movie/popular")
     suspend fun getPopularMovies(@Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<PopularMovieResponseDto>
+
+    @GET("3/genre/movie/list")
+    suspend fun getGenres(@Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<GenreResponseDTO>
 }

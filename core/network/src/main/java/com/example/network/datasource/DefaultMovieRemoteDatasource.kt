@@ -2,6 +2,7 @@ package com.example.network.datasource
 
 import com.example.common.dispatcher.Dispatcher
 import com.example.common.dispatcher.Dispatchers
+import com.example.network.model.GenreDTO
 import com.example.network.model.MovieItemDto
 import com.example.network.service.ApiService
 import com.example.network.utils.safeApiCall
@@ -25,5 +26,9 @@ constructor(
 
     override suspend fun getPopularMovies(page: Int): Result<List<MovieItemDto>> = withContext(dispatcher) {
         safeApiCall({ apiService.getPopularMovies() }) { it.results }
+    }
+
+    override suspend fun getGenres(): Result<List<GenreDTO>> = withContext(dispatcher) {
+        safeApiCall({ apiService.getGenres() }) { it.genres }
     }
 }

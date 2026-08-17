@@ -21,6 +21,7 @@ class MockInterceptor(private val context: Context, private val isMockEnabled: B
                 path.endsWith("/trending/all/day") -> "trending_movies.json"
                 path.endsWith("/movie/now_playing") -> "now_playing_movies.json"
                 path.endsWith("/movie/popular") -> "popular_movies.json"
+                path.endsWith("/genre/movie/listr") -> "genres.json"
                 else -> null
             }
 
