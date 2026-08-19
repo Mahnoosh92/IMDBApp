@@ -116,9 +116,11 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
     NavigationSuiteScaffold(
         layoutType = layoutType,
         modifier =
-        modifier.semantics {
-            testTagsAsResourceId = true
-        },
+        modifier
+            .semantics {
+                testTagsAsResourceId = true
+            }
+            .windowInsetsPadding(WindowInsets.safeDrawing),
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
                 val isSelected = destination == currentDestination

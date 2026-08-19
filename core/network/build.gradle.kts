@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.android.junit5)
+    alias(libs.plugins.kotlin.serialization)
 }
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
