@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -55,8 +57,9 @@ fun HomeContent(nowPlaying: List<MovieItem>, modifier: Modifier = Modifier) {
     }
 }
 
-private fun LazyStaggeredGridScope.nowPlaying(nowPlaying: List<MovieItem>) {
+private fun LazyStaggeredGridScope.nowPlaying(nowPlaying: List<MovieItem>, modifier: Modifier = Modifier) {
     item(span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
-        HeroCarousel(movies = nowPlaying)
+        val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+        HeroCarousel(movies = nowPlaying, modifier = Modifier.height(screenHeight * 0.3f))
     }
 }

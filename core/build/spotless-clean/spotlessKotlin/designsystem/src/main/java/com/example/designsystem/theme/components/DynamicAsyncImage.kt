@@ -2,6 +2,7 @@ package com.example.designsystem.theme.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +24,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.designsystem.R
 
 @Composable
-fun DynamicAsyncImage(imageUrl: String, contentDescription: String?, modifier: Modifier = Modifier, placeholder: Painter = painterResource(R.drawable.ic_place_holder_android_24dp)) {
+fun DynamicAsyncImage(imageUrl: String, contentDescription: String?, modifier: Modifier = Modifier, contentScale: ContentScale = ContentScale.Crop, placeholder: Painter = painterResource(R.drawable.ic_place_holder_android_24dp)) {
     var isLoading by remember { mutableStateOf(true) }
     var isError by remember { mutableStateOf(false) }
     val imageLoader = rememberAsyncImagePainter(
@@ -47,9 +48,10 @@ fun DynamicAsyncImage(imageUrl: String, contentDescription: String?, modifier: M
             )
         }
         Image(
-            contentScale = ContentScale.Crop,
+            contentScale = contentScale,
             painter = if (isError.not() && !isLocalInspection) imageLoader else placeholder,
             contentDescription = contentDescription,
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
