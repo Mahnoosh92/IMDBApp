@@ -1,8 +1,10 @@
 package com.example.network.model
 
+import android.annotation.SuppressLint
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 data class PopularMovieResponseDto(
     @SerialName("page")

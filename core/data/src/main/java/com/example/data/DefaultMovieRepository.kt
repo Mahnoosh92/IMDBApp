@@ -23,4 +23,5 @@ class DefaultMovieRepository @Inject constructor(
 
     override suspend fun getPopularMovies(page: Int): Result<List<MovieItem>> = withContext(dispatcher) { remoteDataSource.getPopularMovies(page = page).mapListToDomain(MovieItemDto::toDomain) }
     override suspend fun getGenres(page: Int): Result<List<Genre>> = withContext(dispatcher) { remoteDataSource.getGenres().mapListToDomain(GenreDTO::toDomain) }
+    override suspend fun discoverMovies(genre: String): Result<List<MovieItem>> = withContext(dispatcher) { remoteDataSource.discoverMovies(genre = genre).mapListToDomain(MovieItemDto::toDomain) }
 }

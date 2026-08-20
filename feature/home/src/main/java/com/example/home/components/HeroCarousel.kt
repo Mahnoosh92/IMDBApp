@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.theme.components.DynamicAsyncImage
 import com.example.model.MovieItem
@@ -80,6 +81,7 @@ fun HeroCarousel(movies: List<MovieItem>, modifier: Modifier = Modifier, onBanne
                         .padding(bottom = 30.dp),
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }

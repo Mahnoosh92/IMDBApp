@@ -26,6 +26,7 @@ class MockInterceptor(
             path.contains("movie/now_playing") -> "now_playing_movies.json"
             path.contains("movie/popular") -> "popular_movies.json"
             path.contains("genre/movie/list") -> "genres.json"
+            path.contains("discover/movie") -> "now_playing_movies.json"
             else -> null
         }
 

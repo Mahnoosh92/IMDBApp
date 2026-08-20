@@ -1,403 +1,421 @@
 {
-  "page": 1,
-  "results": [
-    {
-      "adult": false,
-      "backdrop_path": "/gMJngTNfaqCSCqGD4y8lVMZXKDn.jpg",
-      "genre_ids": [
-        28,
-        12,
-        878
-      ],
-      "id": 640146,
-      "original_language": "en",
-      "original_title": "Ant-Man and the Wasp: Quantumania",
-      "overview": "Super-Hero partners Scott Lang and Hope van Dyne, along with with Hope's parents Janet van Dyne and Hank Pym, and Scott's daughter Cassie Lang, find themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that will push them beyond the limits of what they thought possible.",
-      "popularity": 8567.865,
-      "poster_path": "/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg",
-      "release_date": "2023-02-15",
-      "title": "Ant-Man and the Wasp: Quantumania",
-      "video": false,
-      "vote_average": 6.5,
-      "vote_count": 1886
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/iJQIbOPm81fPEGKt5BPuZmfnA54.jpg",
-      "genre_ids": [
-        16,
-        12,
-        10751,
-        14,
-        35
-      ],
-      "id": 502356,
-      "original_language": "en",
-      "original_title": "The Super Mario Bros. Movie",
-      "overview": "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-      "popularity": 6572.614,
-      "poster_path": "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-      "release_date": "2023-04-05",
-      "title": "The Super Mario Bros. Movie",
-      "video": false,
-      "vote_average": 7.5,
-      "vote_count": 1456
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/nDxJJyA5giRhXx96q1sWbOUjMBI.jpg",
-      "genre_ids": [
-        28,
-        35,
-        14
-      ],
-      "id": 594767,
-      "original_language": "en",
-      "original_title": "Shazam! Fury of the Gods",
-      "overview": "Billy Batson and his foster siblings, who transform into superheroes by saying \"Shazam!\", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.",
-      "popularity": 4274.232,
-      "poster_path": "/2VK4d3mqqTc7LVZLnLPeRiPaJ71.jpg",
-      "release_date": "2023-03-15",
-      "title": "Shazam! Fury of the Gods",
-      "video": false,
-      "vote_average": 6.9,
-      "vote_count": 1231
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/ovM06PdF3M8wvKb06i4sjW3xoww.jpg",
-      "genre_ids": [
-        878,
-        12,
-        28
-      ],
-      "id": 76600,
-      "original_language": "en",
-      "original_title": "Avatar: The Way of Water",
-      "overview": "Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.",
-      "popularity": 3365.913,
-      "poster_path": "/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-      "release_date": "2022-12-14",
-      "title": "Avatar: The Way of Water",
-      "video": false,
-      "vote_average": 7.7,
-      "vote_count": 7535
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/xwA90BwZXTh8ke3CVsQlj8EOkFr.jpg",
-      "genre_ids": [
-        28,
-        12,
-        36,
-        18,
-        10752
-      ],
-      "id": 948713,
-      "original_language": "en",
-      "original_title": "The Last Kingdom: Seven Kings Must Die",
-      "overview": "In the wake of King Edward's death, Uhtred of Bebbanburg and his comrades adventure across a fractured kingdom in the hopes of uniting England at last.",
-      "popularity": 3119.049,
-      "poster_path": "/7yyFEsuaLGTPul5UkHc5BhXnQ0k.jpg",
-      "release_date": "2023-04-14",
-      "title": "The Last Kingdom: Seven Kings Must Die",
-      "video": false,
-      "vote_average": 7.4,
-      "vote_count": 232
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/5i6SjyDbDWqyun8klUuCxrlFbyw.jpg",
-      "genre_ids": [
-        18,
-        28
-      ],
-      "id": 677179,
-      "original_language": "en",
-      "original_title": "Creed III",
-      "overview": "After dominating the boxing world, Adonis Creed has been thriving in both his career and family life. When a childhood friend and former boxing prodigy, Damian Anderson, resurfaces after serving a long sentence in prison, he is eager to prove that he deserves his shot in the ring. The face-off between former friends is more than just a fight. To settle the score, Adonis must put his future on the line to battle Damian — a fighter who has nothing to lose.",
-      "popularity": 2856.222,
-      "poster_path": "/cvsXj3I9Q2iyyIo95AecSd1tad7.jpg",
-      "release_date": "2023-03-01",
-      "title": "Creed III",
-      "video": false,
-      "vote_average": 7.3,
-      "vote_count": 1192
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/bT3IpP7OopgiVuy6HCPOWLuaFAd.jpg",
-      "genre_ids": [
-        35,
-        9648,
-        28
-      ],
-      "id": 638974,
-      "original_language": "en",
-      "original_title": "Murder Mystery 2",
-      "overview": "After starting their own detective agency, Nick and Audrey Spitz land a career-making case when their billionaire pal is kidnapped from his wedding.",
-      "popularity": 1879.655,
-      "poster_path": "/s1VzVhXlqsevi8zeCMG9A16nEUf.jpg",
-      "release_date": "2023-03-28",
-      "title": "Murder Mystery 2",
-      "video": false,
-      "vote_average": 6.5,
-      "vote_count": 864
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/7bWxAsNPv9CXHOhZbJVlj2KxgfP.jpg",
-      "genre_ids": [
-        27,
-        53
-      ],
-      "id": 713704,
-      "original_language": "en",
-      "original_title": "Evil Dead Rise",
-      "overview": "Two sisters find an ancient vinyl that gives birth to bloodthirsty demons that run amok in a Los Angeles apartment building and thrusts them into a primal battle for survival as they face the most nightmarish version of family imaginable.",
-      "popularity": 1696.367,
-      "poster_path": "/mIBCtPvKZQlxubxKMeViO2UrP3q.jpg",
-      "release_date": "2023-04-12",
-      "title": "Evil Dead Rise",
-      "video": false,
-      "vote_average": 7,
-      "vote_count": 207
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/ouB7hwclG7QI3INoYJHaZL4vOaa.jpg",
-      "genre_ids": [
-        16,
-        10751,
-        14,
-        12,
-        35,
-        18
-      ],
-      "id": 315162,
-      "original_language": "en",
-      "original_title": "Puss in Boots: The Last Wish",
-      "overview": "Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.",
-      "popularity": 1347.259,
-      "poster_path": "/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
-      "release_date": "2022-12-07",
-      "title": "Puss in Boots: The Last Wish",
-      "video": false,
-      "vote_average": 8.3,
-      "vote_count": 5331
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/h8gHn0OzBoaefsYseUByqsmEDMY.jpg",
-      "genre_ids": [
-        28,
-        53,
-        80
-      ],
-      "id": 603692,
-      "original_language": "en",
-      "original_title": "John Wick: Chapter 4",
-      "overview": "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
-      "popularity": 1320.735,
-      "poster_path": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
-      "release_date": "2023-03-22",
-      "title": "John Wick: Chapter 4",
-      "video": false,
-      "vote_average": 8,
-      "vote_count": 1211
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/nDmPjKLqLwWyd4Ssti8HCdhW5cZ.jpg",
-      "genre_ids": [
-        28
-      ],
-      "id": 1048300,
-      "original_language": "en",
-      "original_title": "Adrenaline",
-      "overview": "A female FBI agent holidaying in Eastern Europe with her family gets her life upside down when her daughter is kidnapped. She has to team up with a criminal on the run to save her daughter before time runs out.",
-      "popularity": 1460.629,
-      "poster_path": "/qVzRt8c2v4gGBYsnaflXVVeQ9Lh.jpg",
-      "release_date": "2022-12-15",
-      "title": "Adrenaline",
-      "video": false,
-      "vote_average": 4,
-      "vote_count": 4
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/a2tys4sD7xzVaogPntGsT1ypVoT.jpg",
-      "genre_ids": [
-        53,
-        35,
-        80
-      ],
-      "id": 804150,
-      "original_language": "en",
-      "original_title": "Cocaine Bear",
-      "overview": "Inspired by a true story, an oddball group of cops, criminals, tourists and teens converge in a Georgia forest where a 500-pound black bear goes on a murderous rampage after unintentionally ingesting cocaine.",
-      "popularity": 1175.491,
-      "poster_path": "/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg",
-      "release_date": "2023-02-22",
-      "title": "Cocaine Bear",
-      "video": false,
-      "vote_average": 6.4,
-      "vote_count": 878
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/54IXMMEQKlkPXHqPExWy98UBmtE.jpg",
-      "genre_ids": [
-        27
-      ],
-      "id": 1008005,
-      "original_language": "es",
-      "original_title": "La niña de la comunión",
-      "overview": "Spain, late 1980s. Newcomer Sara tries to fit in with the other teens in this tight-knit small town in the province of Tarragona. If only she were more like her extroverted best friend, Rebe. They go out one night at a nightclub, on the way home, they come upon a little girl holding a doll, dressed for her first communion. And that's when the nightmare begins.",
-      "popularity": 1154.3,
-      "poster_path": "/sP6AO11a7jWgsmT9T8j9EGIWAaZ.jpg",
-      "release_date": "2023-02-10",
-      "title": "The Communion Girl",
-      "video": false,
-      "vote_average": 6.5,
-      "vote_count": 58
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/tFaC1Fb1sv1dALB0i9Avi76MHmn.jpg",
-      "genre_ids": [
-        10751,
-        28,
-        12
-      ],
-      "id": 946310,
-      "original_language": "nl",
-      "original_title": "De Piraten van Hiernaast II: De Ninja's van de Overkant",
-      "overview": "The pirates feel right at home in Sandborough, but the atmosphere cools right down when the ninjas come to live in the street. After all, pirates and ninjas are sworn enemies!  While pirate captain Hector Blunderbuss struggles to get rid of his new neighbours, son Billy and ninja daughter Yuka become friends. The pirates challenge the ninjas to the ultimate battle at the village's annual hexathlon. Who will win the match? Ninjas are faster and more agile of course, but pirates are the best cheats in all of the seven seas...",
-      "popularity": 1159.928,
-      "poster_path": "/uDsvma9dAwnDPVuCFi99YpWvBk0.jpg",
-      "release_date": "2022-04-20",
-      "title": "Pirates Down the Street II: The Ninjas from Across",
-      "video": false,
-      "vote_average": 6.4,
-      "vote_count": 22
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/rPSJAElGxOTko1zK6uIlYnTMFxN.jpg",
-      "genre_ids": [
-        80
-      ],
-      "id": 1104040,
-      "original_language": "en",
-      "original_title": "Gangs of Lagos",
-      "overview": "A group of friends who each have to navigate their own destiny, growing up on the bustling streets and neighborhood of Isale Eko, Lagos.",
-      "popularity": 1138.252,
-      "poster_path": "/nGwFsB6EXUCr21wzPgtP5juZPSv.jpg",
-      "release_date": "2023-04-07",
-      "title": "Gangs of Lagos",
-      "video": false,
-      "vote_average": 5.6,
-      "vote_count": 21
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/eSVu1FvGPy86TDo4hQbpuHx55DJ.jpg",
-      "genre_ids": [
-        878,
-        12,
-        53,
-        28
-      ],
-      "id": 700391,
-      "original_language": "en",
-      "original_title": "65",
-      "overview": "65 million years ago, the only 2 survivors of a spaceship from Somaris that crash-landed on Earth must fend off dinosaurs and reach the escape vessel in time before an imminent asteroid strike threatens to destroy the planet.",
-      "popularity": 1077.09,
-      "poster_path": "/rzRb63TldOKdKydCvWJM8B6EkPM.jpg",
-      "release_date": "2023-03-02",
-      "title": "65",
-      "video": false,
-      "vote_average": 6.3,
-      "vote_count": 763
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/5Y5pz0NX7SZS9036I733F7uNcwK.jpg",
-      "genre_ids": [
-        27,
-        53
-      ],
-      "id": 758323,
-      "original_language": "en",
-      "original_title": "The Pope's Exorcist",
-      "overview": "Father Gabriele Amorth, Chief Exorcist of the Vatican, investigates a young boy's terrifying possession and ends up uncovering a centuries-old conspiracy the Vatican has desperately tried to keep hidden.",
-      "popularity": 1073.229,
-      "poster_path": "/9JBEPLTPSm0d1mbEcLxULjJq9Eh.jpg",
-      "release_date": "2023-04-05",
-      "title": "The Pope's Exorcist",
-      "video": false,
-      "vote_average": 6.5,
-      "vote_count": 143
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/m1fgGSLK0WvRpzM1AmZu38m0Tx8.jpg",
-      "genre_ids": [
-        28
-      ],
-      "id": 842945,
-      "original_language": "en",
-      "original_title": "Supercell",
-      "overview": "Good-hearted teenager William always lived in hope of following in his late father’s footsteps and becoming a storm chaser. His father’s legacy has now been turned into a storm-chasing tourist business, managed by the greedy and reckless Zane Rogers, who is now using William as the main attraction to lead a group of unsuspecting adventurers deep into the eye of the most dangerous supercell ever seen.",
-      "popularity": 942.178,
-      "poster_path": "/gbGHezV6yrhua0KfAgwrknSOiIY.jpg",
-      "release_date": "2023-03-17",
-      "title": "Supercell",
-      "video": false,
-      "vote_average": 6.3,
-      "vote_count": 125
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/tYcmm8XtzRdcT6kliCbHuWwLCwB.jpg",
-      "genre_ids": [
-        28,
-        80,
-        53
-      ],
-      "id": 849869,
-      "original_language": "ko",
-      "original_title": "길복순",
-      "overview": "At work, she's a renowned assassin. At home, she's a single mom to a teenage daughter. Killing? That's easy. It's parenting that's the hard part.",
-      "popularity": 958.517,
-      "poster_path": "/taYgn3RRpCGlTGdaGQvnSIOzXFy.jpg",
-      "release_date": "2023-02-17",
-      "title": "Kill Boksoon",
-      "video": false,
-      "vote_average": 6.8,
-      "vote_count": 184
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/eNJhWy7xFzR74SYaSJHqJZuroDm.jpg",
-      "genre_ids": [
-        28,
-        878
-      ],
-      "id": 1033219,
-      "original_language": "en",
-      "original_title": "Attack on Titan",
-      "overview": "As viable water is depleted on Earth, a mission is sent to Saturn's moon Titan to retrieve sustainable H2O reserves from its alien inhabitants. But just as the humans acquire the precious resource, they are attacked by Titan rebels, who don't trust that the Earthlings will leave in peace.",
-      "popularity": 897.66,
-      "poster_path": "/qNz4l8UgTkD8rlqiKZ556pCJ9iO.jpg",
-      "release_date": "2022-09-30",
-      "title": "Attack on Titan",
-      "video": false,
-      "vote_average": 6.1,
-      "vote_count": 105
-    }
-  ],
-  "total_pages": 38029,
-  "total_results": 760569
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/ezbrL1dMymKQZw7mDEWa2ZTzN7d.jpg",
+            "genre_ids": [
+                16,
+                28,
+                12,
+                14
+            ],
+            "id": 980431,
+            "title": "Avatar Aang: The Last Airbender",
+            "original_language": "en",
+            "original_title": "Avatar Aang: The Last Airbender",
+            "overview": "Avatar Aang, the world's last Airbender, learns of an ancient power that could save his culture from extinction. With the help of his friends, he embarks on a global quest to find it before it falls into the wrong hands and threatens to upend the peace they sacrificed everything to achieve.",
+            "popularity": 105.1595,
+            "poster_path": "/3sgnSfNT27Bx5O5ukr7B26mhEQq.jpg",
+            "release_date": "2026-07-24",
+            "softcore": false,
+            "video": false,
+            "vote_average": 9.225,
+            "vote_count": 907
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/iCML6fBe3X0y06P33bM7dyYXPKZ.jpg",
+            "genre_ids": [
+                35,
+                10749
+            ],
+            "id": 1632181,
+            "title": "Accidental Partners",
+            "original_language": "es",
+            "original_title": "Socias por accidente",
+            "overview": "Two women discover they were both scammed by the same man (who also got them pregnant). They form an alliance to take revenge.",
+            "popularity": 24.9852,
+            "poster_path": "/j0CIVzeR7hRAPBPGR54qDZoOQpp.jpg",
+            "release_date": "2026-03-12",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.888,
+            "vote_count": 356
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/zMwhWailP1WY7sb6AoE6b8ugoy.jpg",
+            "genre_ids": [
+                12,
+                16,
+                10751,
+                14
+            ],
+            "id": 1007757,
+            "title": "Swapped",
+            "original_language": "en",
+            "original_title": "Swapped",
+            "overview": "A small woodland creature and a majestic bird, two natural sworn enemies of the Valley, magically trade places and set off on an adventure of a lifetime to switch back. Their journey soon uncovers a greater threat—one that could endanger not only their species, but the entire valley they call home.",
+            "popularity": 49.9344,
+            "poster_path": "/tHhxWxge06goXU6ZQH1hj7vK8Hd.jpg",
+            "release_date": "2026-05-01",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.88,
+            "vote_count": 2112
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/1RgPyOhN4DRs225BGTlHJqCudII.jpg",
+            "genre_ids": [
+                16,
+                28,
+                14
+            ],
+            "id": 1311031,
+            "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+            "original_language": "ja",
+            "original_title": "劇場版「鬼滅の刃」無限城編 第一章 猗窩座再来",
+            "overview": "The Demon Slayer Corps are drawn into the Infinity Castle, where Tanjiro, Nezuko, and the Hashira face terrifying Upper Rank demons in a desperate fight as the final battle against Muzan Kibutsuji begins.",
+            "popularity": 92.3438,
+            "poster_path": "/fWVSwgjpT2D78VUh6X8UBd2rorW.jpg",
+            "release_date": "2025-07-18",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.73,
+            "vote_count": 1897
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/zfbjgQE1uSd9wiPTX4VzsLi0rGG.jpg",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 278,
+            "title": "The Shawshank Redemption",
+            "original_language": "en",
+            "original_title": "The Shawshank Redemption",
+            "overview": "Imprisoned in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
+            "popularity": 87.6812,
+            "poster_path": "/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg",
+            "release_date": "1994-09-23",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.728,
+            "vote_count": 31085
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/tSPT36ZKlP2WVHJLM4cQPLSzv3b.jpg",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 238,
+            "title": "The Godfather",
+            "original_language": "en",
+            "original_title": "The Godfather",
+            "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+            "popularity": 58.7501,
+            "poster_path": "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+            "release_date": "1972-03-14",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.685,
+            "vote_count": 23378
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ufSwlnECLoUbBjPrFqEQcWBzHwc.jpg",
+            "genre_ids": [
+                10402,
+                18
+            ],
+            "id": 936075,
+            "title": "Michael",
+            "original_language": "en",
+            "original_title": "Michael",
+            "overview": "The story of Michael Jackson, one of the most influential artists the world has ever known, and his life beyond the music. His journey from the discovery of his extraordinary talent as the lead of the Jackson Five, to the visionary artist whose creative ambition fueled a relentless pursuit to become the biggest entertainer in the world, highlighting both his life off-stage and some of the most iconic performances from his early solo career.",
+            "popularity": 78.3949,
+            "poster_path": "/2AvgnCwCakNiJqWZqaQhdGjWNey.jpg",
+            "release_date": "2026-04-22",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.674,
+            "vote_count": 4081
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8Tfys3mDZVp4tNoH2ktm06a0Tau.jpg",
+            "genre_ids": [
+                878,
+                12
+            ],
+            "id": 687163,
+            "title": "Project Hail Mary",
+            "original_language": "en",
+            "original_title": "Project Hail Mary",
+            "overview": "Science teacher Ryland Grace wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction.",
+            "popularity": 125.0677,
+            "poster_path": "/yihdXomYb5kTeSivtFndMy5iDmf.jpg",
+            "release_date": "2026-03-15",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.651,
+            "vote_count": 7180
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/kGzFbGhp99zva6oZODW5atUtnqi.jpg",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 240,
+            "title": "The Godfather Part II",
+            "original_language": "en",
+            "original_title": "The Godfather Part II",
+            "overview": "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.",
+            "popularity": 31.8998,
+            "poster_path": "/sSuQTCZwqKrNBNIsksO9IAUoWP9.jpg",
+            "release_date": "1974-12-20",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.572,
+            "vote_count": 14198
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/zb6fM1CX41D9rF9hdgclu0peUmy.jpg",
+            "genre_ids": [
+                18,
+                36,
+                10752
+            ],
+            "id": 424,
+            "title": "Schindler's List",
+            "original_language": "en",
+            "original_title": "Schindler's List",
+            "overview": "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
+            "popularity": 35.3747,
+            "poster_path": "/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
+            "release_date": "1993-12-15",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.57,
+            "vote_count": 17764
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/qqHQsStV6exghCM7zbObuYBiYxw.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 389,
+            "title": "12 Angry Men",
+            "original_language": "en",
+            "original_title": "12 Angry Men",
+            "overview": "The defense and the prosecution have rested and the jury is filing into the jury room to decide if a young Spanish-American is guilty or innocent of murdering his father. What begins as an open and shut case soon becomes a mini-drama of each of the jurors' prejudices and preconceptions about the trial, the accused, and each other.",
+            "popularity": 26.9569,
+            "poster_path": "/ppd84D2i9W8jXmsyInGyihiSyqz.jpg",
+            "release_date": "1957-04-10",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.569,
+            "vote_count": 10253
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/3HaqAPZ0C8n6Hd5T86U53yJlBAN.jpg",
+            "genre_ids": [
+                18,
+                10749
+            ],
+            "id": 1232449,
+            "title": "Young Hearts",
+            "original_language": "nl",
+            "original_title": "Young Hearts",
+            "overview": "14-year-old Elias increasingly feels like an outsider in his village. When he meets his new neighbour of the same age, Alexander, Elias is confronted with his burgeoning sexuality.",
+            "popularity": 15.9497,
+            "poster_path": "/iGCtYxfuvXfy0BD5m6p7vKuPOxS.jpg",
+            "release_date": "2024-10-26",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.567,
+            "vote_count": 304
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/dyJvKsNs2KP8qQnAXbRwDjblViy.jpg",
+            "genre_ids": [
+                16,
+                10751,
+                14
+            ],
+            "id": 129,
+            "title": "Spirited Away",
+            "original_language": "ja",
+            "original_title": "千と千尋の神隠し",
+            "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+            "popularity": 34.5587,
+            "poster_path": "/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+            "release_date": "2001-07-20",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.534,
+            "vote_count": 18729
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/9FE5eD92WfVCiivM9Pq9GVSrlWk.jpg",
+            "genre_ids": [
+                28,
+                80,
+                53
+            ],
+            "id": 155,
+            "title": "The Dark Knight",
+            "original_language": "en",
+            "original_title": "The Dark Knight",
+            "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+            "popularity": 61.6543,
+            "poster_path": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+            "release_date": "2008-07-16",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.534,
+            "vote_count": 36444
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/gqTz24ZRsCP6AKjARmEivY7m0cK.jpg",
+            "genre_ids": [
+                16,
+                28,
+                10749,
+                14
+            ],
+            "id": 1218925,
+            "title": "Chainsaw Man - The Movie: Reze Arc",
+            "original_language": "ja",
+            "original_title": "劇場版 チェンソーマン レゼ篇",
+            "overview": "In a brutal war between devils, hunters, and secret enemies, a mysterious girl named Reze has stepped into Denji's world, and he faces his deadliest battle yet, fueled by love in a world where survival knows no rules.",
+            "popularity": 30.679,
+            "poster_path": "/pHyxb2RV5wLlboAwm9ZJ9qTVEDw.jpg",
+            "release_date": "2025-09-19",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.5,
+            "vote_count": 1128
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/amZavErrjrdgDwhsIdpWxHNenIx.jpg",
+            "genre_ids": [
+                14,
+                18,
+                80
+            ],
+            "id": 497,
+            "title": "The Green Mile",
+            "original_language": "en",
+            "original_title": "The Green Mile",
+            "overview": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.",
+            "popularity": 32.0676,
+            "poster_path": "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg",
+            "release_date": "1999-12-10",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.506,
+            "vote_count": 19641
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/84beTJf26mfhoasUlKSOiNSutyS.jpg",
+            "genre_ids": [
+                35,
+                18,
+                10749
+            ],
+            "id": 19404,
+            "title": "Dilwale Dulhania Le Jayenge",
+            "original_language": "hi",
+            "original_title": "दिलवाले दुल्हनिया ले जायेंगे",
+            "overview": "Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.",
+            "popularity": 14.1902,
+            "poster_path": "/lfRkUr7DYdHldAqi3PwdQGBRBPM.jpg",
+            "release_date": "1995-10-20",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.5,
+            "vote_count": 4614
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/2u7zbn8EudG6kLlBzUYqP8RyFU4.jpg",
+            "genre_ids": [
+                12,
+                14,
+                28
+            ],
+            "id": 122,
+            "title": "The Lord of the Rings: The Return of the King",
+            "original_language": "en",
+            "original_title": "The Lord of the Rings: The Return of the King",
+            "overview": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determine the outcome--one member of the Fellowship of the Ring is revealed as the noble heir to the throne of the Kings of Men. Yet, the sole hope for triumph over evil lies with a brave hobbit, Frodo, who, accompanied by his loyal friend Sam and the hideous, wretched Gollum, ventures deep into the very dark heart of Mordor on his seemingly impossible quest to destroy the Ring of Power.​",
+            "popularity": 48.7188,
+            "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+            "release_date": "2003-12-17",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.504,
+            "vote_count": 27125
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/vbC0rzdrb7Ohc2TkbEbxtOABECe.jpg",
+            "genre_ids": [
+                35,
+                53,
+                18
+            ],
+            "id": 496243,
+            "title": "Parasite",
+            "original_language": "ko",
+            "original_title": "기생충",
+            "overview": "All unemployed, Ki-taek's family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.",
+            "popularity": 36.869,
+            "poster_path": "/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+            "release_date": "2019-05-30",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.49,
+            "vote_count": 21123
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8x9iKH8kWA0zdkgNdpAew7OstYe.jpg",
+            "genre_ids": [
+                16,
+                10749,
+                18
+            ],
+            "id": 372058,
+            "title": "Your Name.",
+            "original_language": "ja",
+            "original_title": "君の名は。",
+            "overview": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
+            "popularity": 29.6334,
+            "poster_path": "/vfJFJPepRKapMd5G2ro7klIRysq.jpg",
+            "release_date": "2016-07-01",
+            "softcore": false,
+            "video": false,
+            "vote_average": 8.484,
+            "vote_count": 12882
+        }
+    ],
+    "total_pages": 557,
+    "total_results": 11129
 }

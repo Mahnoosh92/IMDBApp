@@ -43,10 +43,14 @@ dependencies {
     implementation(projects.core.model)
     implementation(projects.core.data)
 
+    // serialisation
     implementation(libs.kotlinx.serialization.json)
 
     // di
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    // coroutines
+    implementation(libs.coroutines.core)
 }

@@ -6,16 +6,7 @@ import kotlinx.serialization.Serializable
 
 @SuppressLint("UnsafeOptInUsageError")
 @Serializable
-data class DatesDto(
-    @SerialName("maximum")
-    val maximum: String,
-    @SerialName("minimum")
-    val minimum: String,
-)
-
-@SuppressLint("UnsafeOptInUsageError")
-@Serializable
-data class NowPlayingMediaResponseDto(
+data class DiscoverMoviesResponseDto(
     @SerialName("dates")
     val dates: DatesDto,
     @SerialName("page")

@@ -6,7 +6,7 @@
         },
         {
             "id": 12,
-            "name": "Abenteuer"
+            "name": "Adventure"
         },
         {
             "id": 16,
@@ -14,15 +14,15 @@
         },
         {
             "id": 35,
-            "name": "Komödie"
+            "name": "Comedy"
         },
         {
             "id": 80,
-            "name": "Krimi"
+            "name": "Crime"
         },
         {
             "id": 99,
-            "name": "Dokumentarfilm"
+            "name": "Documentary"
         },
         {
             "id": 18,
@@ -30,7 +30,7 @@
         },
         {
             "id": 10751,
-            "name": "Familie"
+            "name": "Family"
         },
         {
             "id": 14,
@@ -38,7 +38,7 @@
         },
         {
             "id": 36,
-            "name": "Historie"
+            "name": "History"
         },
         {
             "id": 27,
@@ -46,7 +46,7 @@
         },
         {
             "id": 10402,
-            "name": "Musik"
+            "name": "Music"
         },
         {
             "id": 9648,
@@ -54,7 +54,7 @@
         },
         {
             "id": 10749,
-            "name": "Liebesfilm"
+            "name": "Romance"
         },
         {
             "id": 878,
@@ -62,7 +62,7 @@
         },
         {
             "id": 10770,
-            "name": "TV-Film"
+            "name": "TV Movie"
         },
         {
             "id": 53,
@@ -70,7 +70,7 @@
         },
         {
             "id": 10752,
-            "name": "Kriegsfilm"
+            "name": "War"
         },
         {
             "id": 37,
