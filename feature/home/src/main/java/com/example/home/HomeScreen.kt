@@ -71,14 +71,14 @@ fun HomeContent(homeUiState: HomeUiState.Success, modifier: Modifier = Modifier,
 }
 
 private fun LazyStaggeredGridScope.nowPlaying(nowPlaying: List<MovieWithGenreItem>, modifier: Modifier = Modifier) {
-    item(span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
+    item(key = "now_playing_carousel", span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
         HeroCarousel(movies = nowPlaying, modifier = modifier.height(screenHeight * 0.3f))
     }
 }
 
 private fun LazyStaggeredGridScope.genres(genres: List<GenreUiModel>, modifier: Modifier = Modifier, onGenreSelected: (GenreUiModel) -> Unit) {
-    item(span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
+    item(key = "genres_section", span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
         Column(modifier.fillMaxWidth()) {
             Text(text = "Genres", modifier = Modifier.padding(top = 8.dp))
             GenreChipGroup(
@@ -93,7 +93,7 @@ private fun LazyStaggeredGridScope.genres(genres: List<GenreUiModel>, modifier: 
 }
 
 private fun LazyStaggeredGridScope.genreMovies(movies: List<MovieWithGenreItem>, modifier: Modifier = Modifier, onMovieClicked: (MovieWithGenreItem) -> Unit) {
-    items(movies, key = { it.id }) { movie ->
+    items(movies, key = { "movie_${it.id}" }) { movie ->
         MovieCard(
             movieItem = movie,
             modifier = modifier,

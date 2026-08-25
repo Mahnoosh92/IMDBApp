@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
         .filterNotNull()
         .flatMapLatest { genreId ->
             flow {
-                emit(Result.success(emptyList<MovieItem>())) // Optional loading state hook
                 emit(movieRepository.discoverMovies(genre = genreId.toString()))
             }
         }
