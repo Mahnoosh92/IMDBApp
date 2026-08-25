@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DiscoverMoviesResponseDto(
     @SerialName("dates")
-    val dates: DatesDto,
+    val dates: DatesDto? = null,
     @SerialName("page")
     val page: Int,
     @SerialName("results")

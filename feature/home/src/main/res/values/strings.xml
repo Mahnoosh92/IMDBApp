@@ -1,3 +1,4 @@
 <resources>
     <string name="feature_home">Home</string>
+    <string name="movie_item_clicked">Home</string>
 </resources>

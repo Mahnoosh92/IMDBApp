@@ -6,6 +6,8 @@ import com.example.data.MovieRepository
 import com.example.home.models.GenreUiModel
 import com.example.home.models.toUiModel
 import com.example.model.MovieItem
+import com.example.model.MovieWithGenreItem
+import com.example.model.toMovieWithGenre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -17,15 +19,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
-    private val _uiState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
-
     private val selectedGenreId = MutableStateFlow<Int?>(null)
 
     private val genresResultFlow = flow {
@@ -56,10 +55,14 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             selectedGenreId.value = genres.first().id
         }
 
+        val genreLookupMap = genres.associateBy { it.id }
+        val nowPlayingUiModels = nowPlaying.map { it.toMovieWithGenre(genreLookupMap) }
+        val genreMoviesUiModels = genreMovies.map { it.toMovieWithGenre(genreLookupMap) }
+
         HomeUiState.Success(
-            nowPlaying = nowPlaying,
+            nowPlaying = nowPlayingUiModels,
             genres = genres.map { it.toUiModel(isSelected = it.id == selectedGenreId.value) },
-            genreMovies = genreMovies,
+            genreMovies = genreMoviesUiModels,
             isGenreMoviesLoading = genreMoviesRes.isFailure,
         )
     }
@@ -84,9 +87,9 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
 sealed interface HomeUiState {
     data object Loading : HomeUiState
     data class Success(
-        val nowPlaying: List<MovieItem>,
+        val nowPlaying: List<MovieWithGenreItem>,
         val genres: List<GenreUiModel> = emptyList(),
-        val genreMovies: List<MovieItem> = emptyList(),
+        val genreMovies: List<MovieWithGenreItem> = emptyList(),
         val isGenreMoviesLoading: Boolean = false,
     ) : HomeUiState
 

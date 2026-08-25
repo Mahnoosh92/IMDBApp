@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,8 +25,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.home.components.GenreChipGroup
 import com.example.home.components.HeroCarousel
+import com.example.home.components.MovieCard
 import com.example.home.models.GenreUiModel
-import com.example.model.MovieItem
+import com.example.model.MovieWithGenreItem
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hiltViewModel()) {
@@ -36,7 +38,14 @@ fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hil
             .fillMaxSize(),
     ) {
         when (uiState) {
-            is HomeUiState.Success -> HomeContent(nowPlaying = (uiState as HomeUiState.Success).nowPlaying, genres = (uiState as HomeUiState.Success).genres, onGenreSelected = { genre -> })
+            is HomeUiState.Success -> HomeContent(
+                homeUiState = uiState as HomeUiState.Success,
+                onGenreSelected = { genre ->
+                    homeViewModel.onIntent(HomeIntent.OnSelectGenre(genreId = genre.id))
+                },
+                onMovieClicked = { movieItem -> },
+            )
+
             is HomeUiState.Loading -> Text(text = "Loading")
             is HomeUiState.Error -> Text(text = (uiState as HomeUiState.Error).message)
         }
@@ -44,7 +53,7 @@ fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hil
 }
 
 @Composable
-fun HomeContent(nowPlaying: List<MovieItem>, genres: List<GenreUiModel>, modifier: Modifier = Modifier, onGenreSelected: (GenreUiModel) -> Unit) {
+fun HomeContent(homeUiState: HomeUiState.Success, modifier: Modifier = Modifier, onGenreSelected: (GenreUiModel) -> Unit, onMovieClicked: (MovieWithGenreItem) -> Unit) {
     val state = rememberLazyStaggeredGridState()
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(300.dp),
@@ -55,12 +64,13 @@ fun HomeContent(nowPlaying: List<MovieItem>, genres: List<GenreUiModel>, modifie
             .testTag(HomeTags.HOME_MAIN),
         state = state,
     ) {
-        nowPlaying(nowPlaying = nowPlaying)
-        genres(genres = genres, onGenreSelected = onGenreSelected)
+        nowPlaying(nowPlaying = homeUiState.nowPlaying)
+        genres(genres = homeUiState.genres, onGenreSelected = onGenreSelected)
+        genreMovies(movies = homeUiState.genreMovies, onMovieClicked = onMovieClicked)
     }
 }
 
-private fun LazyStaggeredGridScope.nowPlaying(nowPlaying: List<MovieItem>, modifier: Modifier = Modifier) {
+private fun LazyStaggeredGridScope.nowPlaying(nowPlaying: List<MovieWithGenreItem>, modifier: Modifier = Modifier) {
     item(span = StaggeredGridItemSpan.FullLine, contentType = "nowPlaying") {
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
         HeroCarousel(movies = nowPlaying, modifier = modifier.height(screenHeight * 0.3f))
@@ -79,5 +89,15 @@ private fun LazyStaggeredGridScope.genres(genres: List<GenreUiModel>, modifier: 
                 onGenreSelected = onGenreSelected,
             )
         }
+    }
+}
+
+private fun LazyStaggeredGridScope.genreMovies(movies: List<MovieWithGenreItem>, modifier: Modifier = Modifier, onMovieClicked: (MovieWithGenreItem) -> Unit) {
+    items(movies, key = { it.id }) { movie ->
+        MovieCard(
+            movieItem = movie,
+            modifier = modifier,
+            onMovieClicked = onMovieClicked,
+        )
     }
 }

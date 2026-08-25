@@ -27,11 +27,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.theme.components.DynamicAsyncImage
-import com.example.model.MovieItem
+import com.example.model.MovieWithGenreItem
 import kotlinx.coroutines.delay
 
 @Composable
-fun HeroCarousel(movies: List<MovieItem>, modifier: Modifier = Modifier, onBannerClick: (movie: MovieItem) -> Unit = {}) {
+fun HeroCarousel(movies: List<MovieWithGenreItem>, modifier: Modifier = Modifier, onBannerClick: (movie: MovieWithGenreItem) -> Unit = {}) {
     if (movies.isEmpty()) return
 
     val pagerState = rememberPagerState(pageCount = { movies.size })
