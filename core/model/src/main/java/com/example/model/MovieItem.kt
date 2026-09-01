@@ -1,5 +1,7 @@
 package com.example.model
 
+import java.util.Locale
+
 data class MovieItem(
     val id: Int,
     val mediaType: String,
@@ -34,8 +36,8 @@ fun MovieItem.toMovieWithGenre(genreLookupMap: Map<Int, Genre>): MovieWithGenreI
         originalLanguage = originalLanguage,
         genreIds = genreIds.mapNotNull { id -> genreLookupMap[id] },
         popularity = popularity,
-        voteAverage = voteAverage,
-        voteCount = voteCount,
+        voteAverage = String.format(Locale.getDefault(), "%.1f", voteAverage),
+        voteCount = "(${formatVoteCount(voteCount)})",
         originalTitle = originalTitle,
         releaseDate = releaseDate,
         video = video,
@@ -44,4 +46,12 @@ fun MovieItem.toMovieWithGenre(genreLookupMap: Map<Int, Genre>): MovieWithGenreI
         firstAirDate = firstAirDate,
         originCountry = originCountry,
     )
+}
+
+private fun formatVoteCount(count: Int): String {
+    return when {
+        count >= 1_000_000 -> String.format(Locale.getDefault(), "%.1fM", count / 1_000_000.0)
+        count >= 1_000 -> String.format(Locale.getDefault(), "%.1fk", count / 1_000.0)
+        else -> count.toString()
+    }
 }
