@@ -50,7 +50,7 @@ import com.example.model.Genre
 import com.example.model.MovieWithGenreItem
 
 @Composable
-fun MovieCard(movieItem: MovieWithGenreItem, modifier: Modifier = Modifier, isWatchlisted: Boolean = false, onWatchlistClicked: (MovieWithGenreItem) -> Unit = {}, onMovieClicked: (MovieWithGenreItem) -> Unit) {
+fun MovieCard(movieItem: MovieWithGenreItem, modifier: Modifier = Modifier, onWatchlistClicked: (MovieWithGenreItem) -> Unit = {}, onMovieClicked: (MovieWithGenreItem) -> Unit) {
     val clickActionLabel = stringResource(R.string.movie_item_clicked)
 
     Card(
@@ -78,9 +78,9 @@ fun MovieCard(movieItem: MovieWithGenreItem, modifier: Modifier = Modifier, isWa
                 ) {
                     Icon(
                         modifier = Modifier.padding(4.dp),
-                        painter = painterResource(id = if (isWatchlisted) R.drawable.ic_book_mark_filled else R.drawable.ic_book_mark_outlined),
+                        painter = painterResource(id = if (movieItem.isWatchListed) R.drawable.ic_book_mark_filled else R.drawable.ic_book_mark_outlined),
                         contentDescription = null,
-                        tint = if (isWatchlisted) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                        tint = if (movieItem.isWatchListed) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }
@@ -109,13 +109,13 @@ fun MovieCard(movieItem: MovieWithGenreItem, modifier: Modifier = Modifier, isWa
                         modifier = Modifier.size(16.dp),
                     )
                     Text(
-                        text = movieItem.voteAverage,
+                        text = movieItem.voteAverageString,
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
                     Text(
-                        text = movieItem.voteCount,
+                        text = movieItem.voteCountString,
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

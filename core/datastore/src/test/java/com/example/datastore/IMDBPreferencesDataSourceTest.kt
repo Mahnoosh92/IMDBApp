@@ -89,9 +89,9 @@ class IMDBPreferencesDataSourceTest {
         originalTitle = title,
         releaseDate = "2010-07-16",
         video = false,
-        name = null,
-        originalName = null,
-        firstAirDate = null,
+        name = "",
+        originalName = "",
+        firstAirDate = "",
         originCountry = listOf("US"),
     )
 }

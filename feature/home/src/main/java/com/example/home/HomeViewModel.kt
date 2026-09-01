@@ -7,6 +7,7 @@ import com.example.home.models.GenreUiModel
 import com.example.home.models.toUiModel
 import com.example.model.MovieItem
 import com.example.model.MovieWithGenreItem
+import com.example.model.toMovieItem
 import com.example.model.toMovieWithGenre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,10 +18,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,10 +43,11 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             }
         }
     val uiState: StateFlow<HomeUiState> = combine(
+        movieRepository.userData,
         flow { emit(movieRepository.getNowPlayingMovies(page = 1)) },
         genresResultFlow,
         genreMoviesResultFlow.onStart { emit(Result.success(emptyList())) },
-    ) { nowPlayingRes, genresRes, genreMoviesRes ->
+    ) { userData, nowPlayingRes, genresRes, genreMoviesRes ->
 
         // Global Error Handling: If any core request fails, emit Error state
         val nowPlaying = nowPlayingRes.getOrElse { return@combine HomeUiState.Error(it.localizedMessage ?: "Failed to load now playing movies") }
@@ -54,9 +58,10 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             selectedGenreId.value = genres.first().id
         }
 
+        val watchListIds = userData.watchListMovies.map(MovieItem::id).toSet()
         val genreLookupMap = genres.associateBy { it.id }
-        val nowPlayingUiModels = nowPlaying.map { it.toMovieWithGenre(genreLookupMap) }
-        val genreMoviesUiModels = genreMovies.map { it.toMovieWithGenre(genreLookupMap) }
+        val nowPlayingUiModels = nowPlaying.map { it.toMovieWithGenre(genreLookupMap = genreLookupMap, isWatchListed = it.id in watchListIds) }
+        val genreMoviesUiModels = genreMovies.map { it.toMovieWithGenre(genreLookupMap = genreLookupMap, isWatchListed = it.id in watchListIds) }
 
         HomeUiState.Success(
             nowPlaying = nowPlayingUiModels,
@@ -79,6 +84,21 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             is HomeIntent.OnSelectGenre -> {
                 selectedGenreId.value = intent.genreId
             }
+
+            is HomeIntent.OnWatchlistClicked -> toggleWatchlist(movie = intent.movieWithGenreItem.toMovieItem())
+        }
+    }
+
+    private fun toggleWatchlist(movie: MovieItem) {
+        viewModelScope.launch {
+            val currentWatchlist = (movieRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
+            val isAlreadyWatchListed = currentWatchlist.any { it.id == movie.id }
+
+            if (isAlreadyWatchListed) {
+                movieRepository.removeWatchItem(movie)
+            } else {
+                movieRepository.addWatchItem(movie)
+            }
         }
     }
 }
@@ -97,4 +117,5 @@ sealed interface HomeUiState {
 
 sealed interface HomeIntent {
     data class OnSelectGenre(val genreId: Int) : HomeIntent
+    data class OnWatchlistClicked(val movieWithGenreItem: MovieWithGenreItem) : HomeIntent
 }

@@ -50,6 +50,24 @@ class IMDBPreferencesDataSource @Inject constructor(private val userPreferences:
         }
     }
 
+    suspend fun removeWatchItem(watchItem: MovieItem) {
+        try {
+            userPreferences.updateData { currentPreferences ->
+                val updatedItems = currentPreferences.watchList.itemsList
+                    .filterNot { it.id == watchItem.id }
+
+                currentPreferences.copy {
+                    this.watchList = WatchList.newBuilder()
+                        .clearItems()
+                        .addAllItems(updatedItems)
+                        .build()
+                }
+            }
+        } catch (ioException: IOException) {
+            Log.e("IMDBPreferencesDS", "Failed to remove item from watchlist", ioException)
+        }
+    }
+
     suspend fun addWatchItem(watchItem: MovieItem) {
         try {
             userPreferences.updateData { currentPreferences ->
