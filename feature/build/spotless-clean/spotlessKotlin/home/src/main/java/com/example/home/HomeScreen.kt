@@ -30,7 +30,7 @@ import com.example.home.models.GenreUiModel
 import com.example.model.MovieWithGenreItem
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hiltViewModel(), navigateToDetail: (MovieWithGenreItem) -> Unit) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
 
     Box(
@@ -43,7 +43,7 @@ fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hil
                 onGenreSelected = { genre ->
                     homeViewModel.onIntent(HomeIntent.OnSelectGenre(genreId = genre.id))
                 },
-                onMovieClicked = { movieItem -> },
+                onMovieClicked = navigateToDetail,
                 onWatchlistClicked = { movieItem ->
                     homeViewModel.onIntent(HomeIntent.OnWatchlistClicked(movieItem))
                 },

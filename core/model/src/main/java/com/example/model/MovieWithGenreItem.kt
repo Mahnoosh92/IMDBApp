@@ -1,5 +1,7 @@
 package com.example.model
 
+import kotlinx.serialization.Serializable
+@Serializable
 data class MovieWithGenreItem(
     val id: Int,
     val mediaType: String,

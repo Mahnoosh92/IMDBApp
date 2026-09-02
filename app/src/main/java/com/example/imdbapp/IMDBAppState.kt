@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +24,7 @@ import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -45,8 +47,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.example.designsystem.theme.components.TopAppbar
+import com.example.detail.navigation.navigateToDetail
 import com.example.home.navigation.navigateToHome
 import com.example.imdbapp.navigation.TopLevelDestination
+import com.example.model.MovieWithGenreItem
 import com.example.profile.navigation.navigateToProfile
 import com.example.watchlist.navigation.navigateToWatchList
 import kotlinx.coroutines.CoroutineScope
@@ -75,6 +79,8 @@ class AppState(val navController: NavHostController, val coroutineScope: Corouti
                 currentDestination?.hasRoute(route = topLevelDestination.route) ?: false
             }
         }
+    val isTopLevelDestination: Boolean
+        @Composable get() = currentTopLevelDestination != null
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
@@ -99,6 +105,10 @@ class AppState(val navController: NavHostController, val coroutineScope: Corouti
             TopLevelDestination.PROFILE -> navController.navigateToProfile(navOptions = topLevelNavOptions)
         }
     }
+
+    fun navigateToDetails(movieWithGenreItem: MovieWithGenreItem) {
+        navController.navigateToDetail(movieWithGenreItem = movieWithGenreItem)
+    }
 }
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
@@ -108,10 +118,14 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
     if (showSettingsDialog) {
         // TODO: Show settings dialog
     }
-    val layoutType =
+    val currentTopLevelDestination = appState.currentTopLevelDestination
+    val isTopLevelDestination = appState.isTopLevelDestination
+    val layoutType = if (isTopLevelDestination) {
         NavigationSuiteScaffoldDefaults
             .calculateFromAdaptiveInfo(windowAdaptiveInfo)
-    val currentDestination = appState.currentTopLevelDestination
+    } else {
+        NavigationSuiteType.None
+    }
 
     NavigationSuiteScaffold(
         layoutType = layoutType,
@@ -123,7 +137,7 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
             .windowInsetsPadding(WindowInsets.safeDrawing),
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
-                val isSelected = destination == currentDestination
+                val isSelected = destination == currentTopLevelDestination
                 item(
                     selected = isSelected,
                     onClick = { appState.navigateToTopLevelDestination(destination) },
@@ -166,27 +180,37 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
                         ),
                     ),
             ) {
-                var shouldShowTopAppBar = false
-                if (currentDestination != null) {
-                    shouldShowTopAppBar = true
-                    TopAppbar(
-                        titleRes = R.string.app_name,
-                        navigationIcon = Icons.Default.Search,
-                        navigationIconContentDescription = stringResource(R.string.search),
-                        actionIcon = Icons.Default.Settings,
-                        actionIconContentDescription = stringResource(R.string.setting),
-                        colors =
-                        TopAppBarDefaults.centerAlignedTopAppBarColors(
-                            containerColor = Color.Transparent,
-                        ),
-                        onNavigationClick = {
-                            // TODO: Navigate to search screen},
-                        },
-                        onActionClick = {
+                TopAppbar(
+                    titleRes = R.string.app_name,
+                    navigationIcon = if (isTopLevelDestination) {
+                        Icons.Default.Search
+                    } else {
+                        Icons.AutoMirrored.Filled.ArrowBack
+                    },
+                    navigationIconContentDescription = if (isTopLevelDestination) {
+                        stringResource(R.string.search)
+                    } else {
+                        stringResource(R.string.back)
+                    },
+                    actionIcon = if (isTopLevelDestination) Icons.Default.Settings else null,
+                    actionIconContentDescription = stringResource(R.string.setting),
+                    colors =
+                    TopAppBarDefaults.centerAlignedTopAppBarColors(
+                        containerColor = Color.Transparent,
+                    ),
+                    onNavigationClick = {
+                        if (isTopLevelDestination) {
+                            // TODO: Navigate to search screen
+                        } else {
+                            appState.navController.popBackStack()
+                        }
+                    },
+                    onActionClick = {
+                        if (isTopLevelDestination) {
                             showSettingsDialog = true
-                        },
-                    )
-                }
+                        }
+                    },
+                )
                 AppNavHost(
                     appState = appState,
                 )

@@ -2,4 +2,5 @@
     <string name="app_name">IMDBApp</string>
     <string name="search">search</string>
     <string name="setting">setting</string>
+    <string name="back">back</string>
 </resources>
