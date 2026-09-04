@@ -1,4 +1,4 @@
-package com.example.home.components
+package com.example.designsystem.theme.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -45,7 +45,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
-import com.example.home.R
+import com.example.designsystem.R
 import com.example.model.Genre
 import com.example.model.MovieWithGenreItem
 

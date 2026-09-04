@@ -17,7 +17,7 @@ fun AppNavHost(appState: AppState, modifier: Modifier = Modifier) {
         modifier = modifier,
     ) {
         homeScreen(navigateToDetail = appState::navigateToDetails)
-        watchListScreen()
+        watchListScreen(navigateToDetail = appState::navigateToDetails)
         profileScreen()
         detailScreen()
     }

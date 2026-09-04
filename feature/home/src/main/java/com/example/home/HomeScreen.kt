@@ -23,9 +23,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.designsystem.theme.components.MovieCard
 import com.example.home.components.GenreChipGroup
 import com.example.home.components.HeroCarousel
-import com.example.home.components.MovieCard
 import com.example.home.models.GenreUiModel
 import com.example.model.MovieWithGenreItem
 
