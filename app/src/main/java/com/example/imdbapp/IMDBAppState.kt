@@ -46,6 +46,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.example.designsystem.theme.components.LocalSnackbarHostState
 import com.example.designsystem.theme.components.TopAppbar
 import com.example.detail.navigation.navigateToDetail
 import com.example.home.navigation.navigateToHome

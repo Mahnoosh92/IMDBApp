@@ -15,13 +15,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.metrics.performance.JankStats
 import com.example.designsystem.theme.IMDBAppTheme
+import com.example.designsystem.theme.components.LocalSnackbarHostState
 import com.example.model.DarkThemeConfig
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -98,8 +98,3 @@ private fun shouldUseDarkTheme(uiState: MainActivityUiState): Boolean = when (ui
             DarkThemeConfig.DARK -> true
         }
 }
-
-val LocalSnackbarHostState =
-    staticCompositionLocalOf<SnackbarHostState> {
-        error("No SnackbarHostState provided! Wrap your content in CompositionLocalProvider.")
-    }

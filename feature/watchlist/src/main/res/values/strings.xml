@@ -1,3 +1,7 @@
 <resources>
     <string name="feature_watch_list">WatchList</string>
+    <string name="feature_bookmarks_removed">Remove watched item</string>
+    <string name="feature_bookmarks_undo">Undo\n</string>
+    <string name="feature_watchlist_empty_title">Empty List</string>
+    <string name="feature_watchlist_empty_desc">No watch list item to display.\n</string>
 </resources>
