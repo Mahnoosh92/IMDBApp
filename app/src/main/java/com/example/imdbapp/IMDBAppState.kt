@@ -134,8 +134,7 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
         modifier
             .semantics {
                 testTagsAsResourceId = true
-            }
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+            },
         navigationSuiteItems = {
             appState.topLevelDestinations.forEach { destination ->
                 val isSelected = destination == currentTopLevelDestination
@@ -177,7 +176,7 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
                     .consumeWindowInsets(padding)
                     .windowInsetsPadding(
                         WindowInsets.safeDrawing.only(
-                            WindowInsetsSides.Horizontal,
+                            WindowInsetsSides.Horizontal + WindowInsetsSides.Top,
                         ),
                     ),
             ) {
