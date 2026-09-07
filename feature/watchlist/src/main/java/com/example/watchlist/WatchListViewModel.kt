@@ -26,6 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WatchListViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
     var shouldDisplayUndo by mutableStateOf(false)
+        private set
     private var lastRemovedMovie: MovieItem? = null
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -58,6 +59,7 @@ class WatchListViewModel @Inject constructor(private val movieRepository: MovieR
         when (intent) {
             is WatchListIntent.OnWatchlistClicked -> toggleWatchlist(movie = intent.movieWithGenreItem.toMovieItem())
             is WatchListIntent.OnUndoClicked -> undoRemoveFromWatchlist()
+            is WatchListIntent.OnSnackBarShown -> resetUndoState()
         }
     }
 
@@ -86,6 +88,10 @@ class WatchListViewModel @Inject constructor(private val movieRepository: MovieR
             }
         }
     }
+    private fun resetUndoState() {
+        shouldDisplayUndo = false
+        lastRemovedMovie = null
+    }
 }
 sealed interface WatchListUiState {
     data object Loading : WatchListUiState
@@ -95,4 +101,5 @@ sealed interface WatchListUiState {
 sealed interface WatchListIntent {
     data class OnWatchlistClicked(val movieWithGenreItem: MovieWithGenreItem) : WatchListIntent
     data object OnUndoClicked : WatchListIntent
+    data object OnSnackBarShown : WatchListIntent
 }
