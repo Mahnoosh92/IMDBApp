@@ -2,6 +2,7 @@ package com.example.detail.navigation
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -9,6 +10,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import com.example.detail.DetailScreen
+import com.example.detail.DetailViewModel
 import com.example.model.MovieWithGenreItem
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -16,7 +18,7 @@ import kotlinx.serialization.json.Json
 import kotlin.reflect.typeOf
 
 @Serializable
-data class DetailRoute(private val movieWithGenreItem: MovieWithGenreItem)
+data class DetailRoute(val movieWithGenreItem: MovieWithGenreItem)
 
 fun NavController.navigateToDetail(navOptions: NavOptions? = null, movieWithGenreItem: MovieWithGenreItem) = navigate(route = DetailRoute(movieWithGenreItem), navOptions)
 
@@ -29,7 +31,7 @@ fun NavGraphBuilder.detailScreen() {
             },
         ),
     ) {
-        DetailScreen()
+        DetailScreen(viewModel = hiltViewModel<DetailViewModel>())
     }
 }
 
