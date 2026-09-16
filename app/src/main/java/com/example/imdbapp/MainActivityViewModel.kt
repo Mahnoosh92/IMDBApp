@@ -2,7 +2,7 @@ package com.example.imdbapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.datastore.IMDBPreferencesDataSource
+import com.example.data.UserRepository
 import com.example.model.UserData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,10 +14,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel
 @Inject
-constructor(private val preferencesDataSource: IMDBPreferencesDataSource) :
+constructor(private val userRepository: UserRepository) :
     ViewModel() {
     val uiState: StateFlow<MainActivityUiState> =
-        preferencesDataSource.userData.map<UserData, MainActivityUiState> {
+        userRepository.userData.map<UserData, MainActivityUiState> {
             MainActivityUiState.Success(it)
         }.stateIn(
             scope = viewModelScope,

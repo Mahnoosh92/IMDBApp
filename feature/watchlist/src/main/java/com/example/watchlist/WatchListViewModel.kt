@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.MovieRepository
+import com.example.data.UserRepository
 import com.example.model.MovieItem
 import com.example.model.MovieWithGenreItem
 import com.example.model.toMovieItem
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WatchListViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
+class WatchListViewModel @Inject constructor(private val userRepository: UserRepository, private val movieRepository: MovieRepository) : ViewModel() {
     var shouldDisplayUndo by mutableStateOf(false)
         private set
     private var lastRemovedMovie: MovieItem? = null
@@ -39,7 +40,7 @@ class WatchListViewModel @Inject constructor(private val movieRepository: MovieR
             emit(emptyMap())
         })
     }.flatMapLatest { genreMap ->
-        movieRepository.userData.map { userData ->
+        userRepository.userData.map { userData ->
             userData.watchListMovies.map { movieItem ->
                 movieItem.toMovieWithGenre(
                     genreLookupMap = genreMap,
@@ -65,39 +66,43 @@ class WatchListViewModel @Inject constructor(private val movieRepository: MovieR
 
     private fun toggleWatchlist(movie: MovieItem) {
         viewModelScope.launch {
-            val currentWatchlist = (movieRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
+            val currentWatchlist = (userRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
             val isAlreadyWatchListed = currentWatchlist.any { it.id == movie.id }
 
             if (isAlreadyWatchListed) {
                 shouldDisplayUndo = true
                 lastRemovedMovie = movie
-                movieRepository.removeWatchItem(movie)
+                userRepository.removeWatchItem(movie)
             } else {
                 shouldDisplayUndo = false
                 lastRemovedMovie = null
-                movieRepository.addWatchItem(movie)
+                userRepository.addWatchItem(movie)
             }
         }
     }
+
     private fun undoRemoveFromWatchlist() {
         viewModelScope.launch {
             lastRemovedMovie?.let { movie ->
-                movieRepository.addWatchItem(movie)
+                userRepository.addWatchItem(movie)
                 lastRemovedMovie = null
                 shouldDisplayUndo = false
             }
         }
     }
+
     private fun resetUndoState() {
         shouldDisplayUndo = false
         lastRemovedMovie = null
     }
 }
+
 sealed interface WatchListUiState {
     data object Loading : WatchListUiState
     data class Success(val movies: List<MovieWithGenreItem>) : WatchListUiState
     data class Error(val message: String) : WatchListUiState
 }
+
 sealed interface WatchListIntent {
     data class OnWatchlistClicked(val movieWithGenreItem: MovieWithGenreItem) : WatchListIntent
     data object OnUndoClicked : WatchListIntent

@@ -3,6 +3,7 @@ package com.example.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.MovieRepository
+import com.example.data.UserRepository
 import com.example.home.models.GenreUiModel
 import com.example.home.models.toUiModel
 import com.example.model.MovieItem
@@ -27,7 +28,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val movieRepository: MovieRepository, private val userRepository: UserRepository) : ViewModel() {
     private val selectedGenreId = MutableStateFlow<Int?>(null)
 
     private val genresResultFlow = flow {
@@ -43,7 +44,7 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             }
         }
     val uiState: StateFlow<HomeUiState> = combine(
-        movieRepository.userData,
+        userRepository.userData,
         flow { emit(movieRepository.getNowPlayingMovies(page = 1)) },
         genresResultFlow,
         genreMoviesResultFlow.onStart { emit(Result.success(emptyList())) },
@@ -91,13 +92,13 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
 
     private fun toggleWatchlist(movie: MovieItem) {
         viewModelScope.launch {
-            val currentWatchlist = (movieRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
+            val currentWatchlist = (userRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
             val isAlreadyWatchListed = currentWatchlist.any { it.id == movie.id }
 
             if (isAlreadyWatchListed) {
-                movieRepository.removeWatchItem(movie)
+                userRepository.removeWatchItem(movie)
             } else {
-                movieRepository.addWatchItem(movie)
+                userRepository.addWatchItem(movie)
             }
         }
     }

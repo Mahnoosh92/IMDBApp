@@ -7,12 +7,10 @@ import com.example.data.mapper.toDomain
 import com.example.datastore.IMDBPreferencesDataSource
 import com.example.model.Genre
 import com.example.model.MovieItem
-import com.example.model.UserData
 import com.example.network.datasource.MovieRemoteDatasource
 import com.example.network.model.GenreDTO
 import com.example.network.model.MovieItemDto
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -46,17 +44,6 @@ class DefaultMovieRepository @Inject constructor(
         }
         remoteDataSource.getGenres().mapListToDomain(GenreDTO::toDomain)
     }
+
     override suspend fun discoverMovies(genre: String): Result<List<MovieItem>> = withContext(dispatcher) { remoteDataSource.discoverMovies(genre = genre).mapListToDomain(MovieItemDto::toDomain) }
-    override suspend fun removeWatchItem(watchItem: MovieItem) = withContext(dispatcher) {
-        localDataSource.removeWatchItem(watchItem)
-    }
-
-    override suspend fun setWatchList(watchList: List<MovieItem>) = withContext(dispatcher) {
-        localDataSource.setWatchList(watchList)
-    }
-
-    override suspend fun addWatchItem(watchItem: MovieItem) = withContext(dispatcher) {
-        localDataSource.addWatchItem(watchItem)
-    }
-    override val userData: Flow<UserData> = localDataSource.userData
 }
