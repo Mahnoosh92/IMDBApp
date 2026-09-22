@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.devtools.ksp)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     implementation(projects.core.model)
     implementation(projects.core.data)
     implementation(projects.core.navigation)
+    implementation(projects.core.firebase)
     implementation(projects.feature.home)
     implementation(projects.feature.profile)
     implementation(projects.feature.watchlist)

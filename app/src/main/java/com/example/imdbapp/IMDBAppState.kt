@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.core.net.toUri
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -49,6 +50,7 @@ import androidx.navigation.navOptions
 import com.example.designsystem.theme.components.LocalSnackbarHostState
 import com.example.designsystem.theme.components.TopAppbar
 import com.example.detail.navigation.navigateToDetail
+import com.example.firebase.CustomInAppMessageDialog
 import com.example.home.navigation.navigateToHome
 import com.example.imdbapp.navigation.TopLevelDestination
 import com.example.model.MovieWithGenreItem
@@ -109,6 +111,36 @@ class AppState(val navController: NavHostController, val coroutineScope: Corouti
 
     fun navigateToDetails(movieWithGenreItem: MovieWithGenreItem) {
         navController.navigateToDetail(movieWithGenreItem = movieWithGenreItem)
+    }
+
+// In /Users/mahnoosh/AndroidStudioProjects/IMDBApp/app/src/main/java/com/example/imdbapp/IMDBAppState.kt
+
+    fun handleDeepLink(urlString: String) {
+        val uri = urlString.toUri()
+
+        // Determine if this is a top-level destination to apply correct NavOptions
+        // You can check the path or use the navController to "probe" the destination
+        val isTopLevel = topLevelDestinations.any { destination ->
+            // Check if the URI path matches or starts with the expected deep link for top level
+            // For example, if WatchList is "https://www.imdb.google.com/watchlist"
+            uri.path?.contains(destination.name.lowercase()) == true
+        }
+
+        val navOptions = if (isTopLevel) {
+            navOptions {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        } else {
+            null // Default behavior: just push to backstack
+        }
+
+        runCatching {
+            navController.navigate(uri, navOptions)
+        }.onFailure { it.printStackTrace() }
     }
 }
 
@@ -213,6 +245,14 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
                 )
                 AppNavHost(
                     appState = appState,
+                )
+                // Inside IMDBApp composable:
+                CustomInAppMessageDialog(
+                    onActionClicked = { actionUrl ->
+                        actionUrl?.let { urlString ->
+                            appState.handleDeepLink(urlString)
+                        }
+                    },
                 )
             }
         }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "702348890551",
+    "project_id": "imdbapp-cb2ff",
+    "storage_bucket": "imdbapp-cb2ff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702348890551:android:4ac410b587b044a5601832",
+        "android_client_info": {
+          "package_name": "com.example.imdbapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvTcpeVgnUxUlzj3uD3FPPnv-fLYAhuDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
