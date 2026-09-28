@@ -10,4 +10,6 @@
     <string name="visit_imdb_website">Visit IMDb Website</string>
     <string name="browse_movies_tv_shows_and_celebrities">Browse movies, TV shows, and celebrities</string>
     <string name="open_imdb_site">Open IMDb site</string>
+    <string name="policy">Policy</string>
+    <string name="licenses">Licenses</string>
 </resources>

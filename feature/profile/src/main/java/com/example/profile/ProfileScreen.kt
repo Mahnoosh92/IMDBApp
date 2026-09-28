@@ -244,7 +244,12 @@ fun ProfileContent(
             TextButton(onClick = {
                 context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
             }) {
-                Text(text = "Licenses", style = MaterialTheme.typography.titleMedium)
+                Text(text = stringResource(R.string.policy), style = MaterialTheme.typography.titleMedium)
+            }
+            TextButton(onClick = {
+                uriHandler.openUri(PRIVACY_AND_POLICY)
+            }) {
+                Text(text = stringResource(R.string.licenses), style = MaterialTheme.typography.titleMedium)
             }
         }
     }
@@ -266,3 +271,5 @@ private fun launchCustomTab(context: Context, url: String, toolbarColor: Int) {
 
     customTabsIntent.launchUrl(context, Uri.parse(url))
 }
+
+private const val PRIVACY_AND_POLICY = "https://www.imdb.com/privacy/"
