@@ -1,4 +1,4 @@
-package com.example.firebase
+package com.example.firebase.inAppMessaging
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

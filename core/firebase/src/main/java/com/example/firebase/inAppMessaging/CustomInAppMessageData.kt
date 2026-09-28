@@ -1,4 +1,4 @@
-package com.example.firebase
+package com.example.firebase.inAppMessaging
 
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 import com.google.firebase.inappmessaging.FirebaseInAppMessagingDisplay

@@ -18,7 +18,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.metrics.performance.JankStats
 import com.example.designsystem.theme.IMDBAppTheme
 import com.example.designsystem.theme.components.LocalSnackbarHostState
-import com.example.firebase.CustomInAppMessagingManager
+import com.example.firebase.inAppMessaging.CustomInAppMessagingManager
 import com.example.model.DarkThemeConfig
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

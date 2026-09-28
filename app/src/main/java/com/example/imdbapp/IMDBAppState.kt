@@ -50,7 +50,7 @@ import androidx.navigation.navOptions
 import com.example.designsystem.theme.components.LocalSnackbarHostState
 import com.example.designsystem.theme.components.TopAppbar
 import com.example.detail.navigation.navigateToDetail
-import com.example.firebase.CustomInAppMessageDialog
+import com.example.firebase.inAppMessaging.CustomInAppMessageDialog
 import com.example.home.navigation.navigateToHome
 import com.example.imdbapp.navigation.TopLevelDestination
 import com.example.model.MovieWithGenreItem

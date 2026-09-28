@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.spotless) apply false
     id("com.google.gms.google-services") version "4.5.0" apply false
+    id("com.google.android.gms.oss-licenses-plugin") version "0.13.0" apply false
 }
 
 subprojects {
@@ -42,6 +43,18 @@ subprojects {
         format("xml") {
             target("**/*.xml")
             targetExclude("**/build/**/*.xml")
+        }
+    }
+
+    configurations.all {
+        exclude(group = "com.google.protobuf", module = "protobuf-java")
+        exclude(group = "com.google.api.grpc", module = "proto-google-common-protos")
+        exclude(group = "com.sun.activation", module = "javax.activation")
+
+        resolutionStrategy.eachDependency {
+            if (requested.group == "androidx.compose.foundation" && requested.name == "foundation-layout") {
+                useVersion("1.7.6") // Or any version compatible with composeBom 2024.12.01
+            }
         }
     }
 }

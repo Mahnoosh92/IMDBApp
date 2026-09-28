@@ -1,3 +1,13 @@
 <resources>
     <string name="feature_profile">Profile</string>
+    <string name="items_in_watchlist">%1$d items in Watchlist</string>
+    <string name="app_theme">App Theme</string>
+    <string name="movie_lover">Movie Lover</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="system_default">System Default</string>
+    <string name="external_links">External Links</string>
+    <string name="visit_imdb_website">Visit IMDb Website</string>
+    <string name="browse_movies_tv_shows_and_celebrities">Browse movies, TV shows, and celebrities</string>
+    <string name="open_imdb_site">Open IMDb site</string>
 </resources>

@@ -55,7 +55,7 @@ android {
 
 dependencies {
     implementation(projects.core.common)
-    implementation(projects.core.testing.unit)
+    testImplementation(projects.core.testing.unit)
 
     // di
     implementation(libs.hilt.android)
