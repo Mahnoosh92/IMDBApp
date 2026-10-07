@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     id("com.google.gms.google-services")
     id("com.google.android.gms.oss-licenses-plugin")
+    id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 android {

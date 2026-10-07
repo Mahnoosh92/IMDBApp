@@ -8,8 +8,10 @@ plugins {
     alias(libs.plugins.android.junit5) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.spotless) apply false
-    id("com.google.gms.google-services") version "4.5.0" apply false
-    id("com.google.android.gms.oss-licenses-plugin") version "0.13.0" apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.google.oss.licenses) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.firebase.perf) apply false
 }
 
 subprojects {

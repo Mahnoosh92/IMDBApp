@@ -30,4 +30,8 @@ class DefaultMovieRemoteDatasource @Inject constructor(@Dispatcher(Dispatchers.I
     override suspend fun discoverMovies(genre: String): Result<List<MovieItemDto>> = withContext(dispatcher) {
         safeApiCall({ apiService.discoverMovies(genre = genre) }) { it.results }
     }
+
+    override suspend fun searchMovies(query: String, includeAdult: Boolean): Result<List<MovieItemDto>> = withContext(dispatcher) {
+        safeApiCall({ apiService.searchMovies(query = query, includeAdult = includeAdult) }) { it.results }
+    }
 }

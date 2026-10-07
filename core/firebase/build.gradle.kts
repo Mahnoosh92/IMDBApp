@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.devtools.ksp)
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -45,8 +44,14 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     // firebase
-    api(platform("com.google.firebase:firebase-bom:34.19.0"))
-    api("com.google.firebase:firebase-analytics")
-    api("com.google.firebase:firebase-inappmessaging")
-    implementation("com.google.android.gms:play-services-basement:18.12.0")
+    api(platform(libs.firebase.bom))
+    api(libs.firebase.inappmessaging)
+    implementation(libs.play.services.basement)
+
+    // Firebase Crashlytics & Analytics (Analytics enables breadcrumb logging)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
+
+    // Firebase Performance Monitoring
+    implementation(libs.firebase.perf)
 }

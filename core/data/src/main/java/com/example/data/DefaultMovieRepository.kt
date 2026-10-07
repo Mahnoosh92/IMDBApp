@@ -46,4 +46,5 @@ class DefaultMovieRepository @Inject constructor(
     }
 
     override suspend fun discoverMovies(genre: String): Result<List<MovieItem>> = withContext(dispatcher) { remoteDataSource.discoverMovies(genre = genre).mapListToDomain(MovieItemDto::toDomain) }
+    override suspend fun searchMovies(query: String, includeAdult: Boolean): Result<List<MovieItem>> = withContext(dispatcher) { remoteDataSource.searchMovies(query = query, includeAdult = includeAdult).mapListToDomain(MovieItemDto::toDomain) }
 }

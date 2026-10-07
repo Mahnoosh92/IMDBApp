@@ -11,8 +11,17 @@ class MockInterceptor(
     private val context: Context,
     private val isMockEnabled: Boolean,
 ) : Interceptor {
+    companion object {
+        const val NO_MOCK_HEADER = "No-Mock"
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
+
+        if (request.header(NO_MOCK_HEADER).equals("true", ignoreCase = true)) {
+            val newRequest = request.newBuilder().removeHeader(NO_MOCK_HEADER).build()
+            return chain.proceed(newRequest)
+        }
 
         if (!isMockEnabled) {
             return chain.proceed(request)

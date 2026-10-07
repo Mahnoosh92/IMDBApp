@@ -11,4 +11,6 @@ interface MovieRepository {
     suspend fun getPopularMovies(page: Int): Result<List<MovieItem>>
     suspend fun getGenres(page: Int): Result<List<Genre>>
     suspend fun discoverMovies(genre: String): Result<List<MovieItem>>
+
+    suspend fun searchMovies(query: String, includeAdult: Boolean): Result<List<MovieItem>>
 }

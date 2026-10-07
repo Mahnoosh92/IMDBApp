@@ -1,12 +1,15 @@
 package com.example.network.service
 
+import com.example.network.interceptor.MockInterceptor
 import com.example.network.model.DiscoverMoviesResponseDto
 import com.example.network.model.GenreResponseDTO
 import com.example.network.model.NowPlayingMediaResponseDto
 import com.example.network.model.PopularMovieResponseDto
+import com.example.network.model.SearchMovieResultResponse
 import com.example.network.model.TrendingMovieResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiService {
@@ -24,4 +27,8 @@ interface ApiService {
 
     @GET("3/discover/movie")
     suspend fun discoverMovies(@Query("language") language: String = "en-US", @Query("page") page: Int = 1, @Query("with_genres") genre: String): Response<DiscoverMoviesResponseDto>
+
+    @Headers("${MockInterceptor.NO_MOCK_HEADER}: true")
+    @GET("3/search/movie")
+    suspend fun searchMovies(@Query("query") query: String, @Query("include_adult") includeAdult: Boolean = false, @Query("language") language: String = "en-US", @Query("page") page: Int = 1): Response<SearchMovieResultResponse>
 }

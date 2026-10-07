@@ -11,4 +11,6 @@ interface MovieRemoteDatasource {
     suspend fun getPopularMovies(page: Int): Result<List<MovieItemDto>>
     suspend fun getGenres(): Result<List<GenreDTO>>
     suspend fun discoverMovies(genre: String): Result<List<MovieItemDto>>
+
+    suspend fun searchMovies(query: String, includeAdult: Boolean): Result<List<MovieItemDto>>
 }
