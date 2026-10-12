@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -32,7 +33,9 @@ import com.example.model.MovieWithGenreItem
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hiltViewModel(), navigateToDetail: (MovieWithGenreItem) -> Unit) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-
+    LaunchedEffect(Unit) {
+        homeViewModel.onIntent(HomeIntent.OnCreated)
+    }
     Box(
         modifier = modifier
             .fillMaxSize(),

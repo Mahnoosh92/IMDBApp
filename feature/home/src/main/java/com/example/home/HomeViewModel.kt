@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.MovieRepository
 import com.example.data.UserRepository
+import com.example.firebase.crashlytics.CrashReportingRepository
+import com.example.firebase.crashlytics.CustomKeys
 import com.example.home.models.GenreUiModel
 import com.example.home.models.toUiModel
 import com.example.model.MovieItem
@@ -28,7 +30,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val movieRepository: MovieRepository, private val userRepository: UserRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val movieRepository: MovieRepository,
+    private val userRepository: UserRepository,
+    private val crashReportingRepository: CrashReportingRepository
+) : ViewModel() {
     private val selectedGenreId = MutableStateFlow<Int?>(null)
 
     private val genresResultFlow = flow {
@@ -87,6 +93,8 @@ class HomeViewModel @Inject constructor(private val movieRepository: MovieReposi
             }
 
             is HomeIntent.OnWatchlistClicked -> toggleWatchlist(movie = intent.movieWithGenreItem.toMovieItem())
+
+            is HomeIntent.OnCreated -> crashReportingRepository.setCustomKey(CustomKeys.USER_SCREEN, "home")
         }
     }
 
@@ -117,6 +125,7 @@ sealed interface HomeUiState {
 }
 
 sealed interface HomeIntent {
+    data object OnCreated: HomeIntent
     data class OnSelectGenre(val genreId: Int) : HomeIntent
     data class OnWatchlistClicked(val movieWithGenreItem: MovieWithGenreItem) : HomeIntent
 }

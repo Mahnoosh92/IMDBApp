@@ -42,6 +42,7 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.core.model)
     implementation(projects.core.data)
+    implementation(projects.core.firebase)
 
     // serialisation
     implementation(libs.kotlinx.serialization.json)
