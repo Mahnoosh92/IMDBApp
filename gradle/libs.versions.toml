@@ -44,6 +44,10 @@ googleServices = "4.5.0"
 firebaseCrashlytics = "3.0.8"
 firebasePerf = "2.0.2"
 googleOssPlugin = "0.13.0"
+uiautomator = "2.4.0"
+benchmarkMacroJunit4 = "1.5.0"
+baselineprofile = "1.5.0"
+profileinstaller = "1.4.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -109,6 +113,9 @@ firebase-inappmessaging = { module = "com.google.firebase:firebase-inappmessagin
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-perf = { module = "com.google.firebase:firebase-perf" }
 play-services-basement = { module = "com.google.android.gms:play-services-basement", version.ref = "play-services-basement" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -125,3 +132,5 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerf" }
 google-oss-licenses = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "googleOssPlugin" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }

@@ -7,6 +7,7 @@ plugins {
     id("com.google.android.gms.oss-licenses-plugin")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
+    alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -60,6 +61,8 @@ dependencies {
     implementation(projects.feature.watchlist)
     implementation(projects.feature.serach)
     implementation(projects.feature.detail)
+    implementation(libs.androidx.profileinstaller)
+    "baselineProfile"(project(":baselineprofile"))
     lintChecks(project(":lint"))
 
     // di
