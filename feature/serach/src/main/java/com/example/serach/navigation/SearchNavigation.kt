@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object SearchRoute
 
-fun NavController.navigateToSearch(navOptions: NavOptions) = navigate(route = SearchRoute, navOptions)
+fun NavController.navigateToSearch(navOptions: NavOptions? = null) = navigate(route = SearchRoute, navOptions)
 
 fun NavGraphBuilder.searchScreen() {
     composable<SearchRoute>(

@@ -7,6 +7,7 @@ import com.example.detail.navigation.detailScreen
 import com.example.home.navigation.HomeRoute
 import com.example.home.navigation.homeScreen
 import com.example.profile.navigation.profileScreen
+import com.example.serach.navigation.searchScreen
 import com.example.watchlist.navigation.watchListScreen
 
 @Composable
@@ -20,5 +21,6 @@ fun AppNavHost(appState: AppState, modifier: Modifier = Modifier) {
         watchListScreen(navigateToDetail = appState::navigateToDetails)
         profileScreen()
         detailScreen()
+        searchScreen()
     }
 }

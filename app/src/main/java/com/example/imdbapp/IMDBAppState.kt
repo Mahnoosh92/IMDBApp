@@ -55,6 +55,7 @@ import com.example.home.navigation.navigateToHome
 import com.example.imdbapp.navigation.TopLevelDestination
 import com.example.model.MovieWithGenreItem
 import com.example.profile.navigation.navigateToProfile
+import com.example.serach.navigation.navigateToSearch
 import com.example.watchlist.navigation.navigateToWatchList
 import kotlinx.coroutines.CoroutineScope
 
@@ -232,7 +233,7 @@ fun IMDBApp(appState: AppState, modifier: Modifier = Modifier, windowAdaptiveInf
                     ),
                     onNavigationClick = {
                         if (isTopLevelDestination) {
-                            // TODO: Navigate to search screen
+                            appState.navController.navigateToSearch()
                         } else {
                             appState.navController.popBackStack()
                         }
