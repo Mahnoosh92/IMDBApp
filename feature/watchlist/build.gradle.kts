@@ -53,4 +53,6 @@ dependencies {
 
     // coroutines
     implementation(libs.coroutines.core)
+
+    implementation(projects.core.firebase)
 }

@@ -11,6 +11,7 @@ import com.example.model.MovieItem
 import com.example.model.MovieWithGenreItem
 import com.example.model.toMovieItem
 import com.example.model.toMovieWithGenre
+import com.google.firebase.perf.FirebasePerformance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
@@ -25,11 +26,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WatchListViewModel @Inject constructor(private val userRepository: UserRepository, private val movieRepository: MovieRepository) : ViewModel() {
+class WatchListViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val movieRepository: MovieRepository,
+    private val firebasePerf: FirebasePerformance
+) : ViewModel() {
     var shouldDisplayUndo by mutableStateOf(false)
         private set
     private var lastRemovedMovie: MovieItem? = null
-
+    private val toggleWatchlistTrace = firebasePerf.newTrace("toggle_watch_list_trace")
     @OptIn(ExperimentalCoroutinesApi::class)
     val watchListUiState: StateFlow<WatchListUiState> = flow {
         val genresResult = movieRepository.getGenres(page = 1)
@@ -68,16 +73,19 @@ class WatchListViewModel @Inject constructor(private val userRepository: UserRep
         viewModelScope.launch {
             val currentWatchlist = (userRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
             val isAlreadyWatchListed = currentWatchlist.any { it.id == movie.id }
-
+            toggleWatchlistTrace.start()
             if (isAlreadyWatchListed) {
                 shouldDisplayUndo = true
                 lastRemovedMovie = movie
                 userRepository.removeWatchItem(movie)
+                toggleWatchlistTrace.incrementMetric("local_datasource_remove_count", 1)
             } else {
                 shouldDisplayUndo = false
                 lastRemovedMovie = null
                 userRepository.addWatchItem(movie)
+                toggleWatchlistTrace.incrementMetric("local_datasource_add_count", 1)
             }
+            toggleWatchlistTrace.stop()
         }
     }
 

@@ -53,5 +53,5 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // Firebase Performance Monitoring
-    implementation(libs.firebase.perf)
+    api(libs.firebase.perf)
 }

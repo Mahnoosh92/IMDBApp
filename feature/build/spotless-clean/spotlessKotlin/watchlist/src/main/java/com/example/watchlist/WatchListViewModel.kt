@@ -1,0 +1,119 @@
+package com.example.watchlist
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.data.MovieRepository
+import com.example.data.UserRepository
+import com.example.model.MovieItem
+import com.example.model.MovieWithGenreItem
+import com.example.model.toMovieItem
+import com.example.model.toMovieWithGenre
+import com.google.firebase.perf.FirebasePerformance
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class WatchListViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val movieRepository: MovieRepository,
+    private val firebasePerf: FirebasePerformance,
+) : ViewModel() {
+    var shouldDisplayUndo by mutableStateOf(false)
+        private set
+    private var lastRemovedMovie: MovieItem? = null
+    private val toggleWatchlistTrace = firebasePerf.newTrace("toggle_watch_list_trace")
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val watchListUiState: StateFlow<WatchListUiState> = flow {
+        val genresResult = movieRepository.getGenres(page = 1)
+        genresResult.fold(onSuccess = { genres ->
+            val genreMap = genres.associateBy { it.id }
+            emit(genreMap)
+        }, onFailure = {
+            emit(emptyMap())
+        })
+    }.flatMapLatest { genreMap ->
+        userRepository.userData.map { userData ->
+            userData.watchListMovies.map { movieItem ->
+                movieItem.toMovieWithGenre(
+                    genreLookupMap = genreMap,
+                    isWatchListed = true,
+                )
+            }
+        }.map<List<MovieWithGenreItem>, WatchListUiState>(WatchListUiState::Success)
+    }.catch { throwable ->
+        emit(WatchListUiState.Error(throwable.localizedMessage ?: "An unexpected error occurred"))
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = WatchListUiState.Loading,
+    )
+
+    fun onIntent(intent: WatchListIntent) {
+        when (intent) {
+            is WatchListIntent.OnWatchlistClicked -> toggleWatchlist(movie = intent.movieWithGenreItem.toMovieItem())
+            is WatchListIntent.OnUndoClicked -> undoRemoveFromWatchlist()
+            is WatchListIntent.OnSnackBarShown -> resetUndoState()
+        }
+    }
+
+    private fun toggleWatchlist(movie: MovieItem) {
+        viewModelScope.launch {
+            val currentWatchlist = (userRepository.userData.firstOrNull()?.watchListMovies ?: emptyList())
+            val isAlreadyWatchListed = currentWatchlist.any { it.id == movie.id }
+            toggleWatchlistTrace.start()
+            if (isAlreadyWatchListed) {
+                shouldDisplayUndo = true
+                lastRemovedMovie = movie
+                userRepository.removeWatchItem(movie)
+                toggleWatchlistTrace.incrementMetric("local_datasource_remove_count", 1)
+            } else {
+                shouldDisplayUndo = false
+                lastRemovedMovie = null
+                userRepository.addWatchItem(movie)
+                toggleWatchlistTrace.incrementMetric("local_datasource_add_count", 1)
+            }
+            toggleWatchlistTrace.stop()
+        }
+    }
+
+    private fun undoRemoveFromWatchlist() {
+        viewModelScope.launch {
+            lastRemovedMovie?.let { movie ->
+                userRepository.addWatchItem(movie)
+                lastRemovedMovie = null
+                shouldDisplayUndo = false
+            }
+        }
+    }
+
+    private fun resetUndoState() {
+        shouldDisplayUndo = false
+        lastRemovedMovie = null
+    }
+}
+
+sealed interface WatchListUiState {
+    data object Loading : WatchListUiState
+    data class Success(val movies: List<MovieWithGenreItem>) : WatchListUiState
+    data class Error(val message: String) : WatchListUiState
+}
+
+sealed interface WatchListIntent {
+    data class OnWatchlistClicked(val movieWithGenreItem: MovieWithGenreItem) : WatchListIntent
+    data object OnUndoClicked : WatchListIntent
+    data object OnSnackBarShown : WatchListIntent
+}

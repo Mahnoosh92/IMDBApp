@@ -20,6 +20,7 @@ import com.example.designsystem.theme.IMDBAppTheme
 import com.example.designsystem.theme.components.LocalSnackbarHostState
 import com.example.firebase.inAppMessaging.CustomInAppMessagingManager
 import com.example.model.DarkThemeConfig
+import com.google.firebase.perf.metrics.AddTrace
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
     val viewModel: MainActivityViewModel by viewModels()
 
+    @AddTrace(name = "onCreateIMDBApp", enabled = true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val splashScreen = installSplashScreen()
