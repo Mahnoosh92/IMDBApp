@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.baselineprofile"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -19,6 +17,7 @@ android {
         targetSdk = 36
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR,LOW-BATTERY"
     }
 
     targetProjectPath = ":app"
@@ -39,10 +38,6 @@ dependencies {
 
 androidComponents {
     onVariants { v ->
-        val artifactsLoader = v.artifacts.getBuiltArtifactsLoader()
-        v.instrumentationRunnerArguments.put(
-            "targetAppId",
-            v.testedApks.map { artifactsLoader.load(it)?.applicationId },
-        )
+        v.instrumentationRunnerArguments.put("targetAppId", v.testedApplicationId)
     }
 }
